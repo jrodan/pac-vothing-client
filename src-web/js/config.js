@@ -2,9 +2,10 @@ var props = {
 	path : {
 		login: "/vothing-core/vothing/security/login",
 		logout: "/vothing-core/vothing/security/logout",
-		voteslist: "/vothing-core/restricted/vote/list",
+		votelist: "/vothing-core/restricted/vote/list",
 		votelist: "/vothing-core/restricted/vote/list/",
-		voteadd: "/vothing-core/restricted/vote/add/"
+		voteadd: "/vothing-core/restricted/vote/add/",
+		surveylist: "/vothing-core/restricted/survey/list",
 	},
 	user : {
 		defaultemail: "default@vothing.com",

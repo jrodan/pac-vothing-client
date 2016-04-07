@@ -33704,7 +33704,7 @@ var SurveyList = _react2.default.createClass({
 		}
 
 		if (!task || task == "") {
-			task = _config2.default.path.voteslist;
+			task = _config2.default.path.surveylist;
 		}
 
 		// TODO check if submitData is set
@@ -33761,14 +33761,16 @@ module.exports = SurveyList;
 },{"../../actions/AuthActions":221,"../../config.js":225,"../../stores/AuthStore":232,"jquery":31,"react":202,"react-router":58,"reflux":218}],225:[function(require,module,exports){
 "use strict";
 
+var _path;
+
+function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+
 var props = {
-	path: {
+	path: (_path = {
 		login: "/vothing-core/vothing/security/login",
 		logout: "/vothing-core/vothing/security/logout",
-		voteslist: "/vothing-core/restricted/vote/list",
-		votelist: "/vothing-core/restricted/vote/list/",
-		voteadd: "/vothing-core/restricted/vote/add/"
-	},
+		votelist: "/vothing-core/restricted/vote/list"
+	}, _defineProperty(_path, "votelist", "/vothing-core/restricted/vote/list/"), _defineProperty(_path, "voteadd", "/vothing-core/restricted/vote/add/"), _defineProperty(_path, "surveylist", "/vothing-core/restricted/survey/list"), _path),
 	user: {
 		defaultemail: "default@vothing.com",
 		defaultpassword: "123"

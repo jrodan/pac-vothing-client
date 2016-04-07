@@ -46,7 +46,7 @@ var SurveyList = React.createClass({
 		}
 			
 		if(!task || task == "") {
-			task = props.path.voteslist;
+			task = props.path.surveylist;
 		}
 		
 		// TODO check if submitData is set
