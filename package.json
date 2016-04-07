@@ -1,0 +1,71 @@
+{
+  "name": "vothing-html-clickdummy",
+  "version": "0.0.1",
+  "description": "",
+  "main": "src-web/index.html",
+  "dependencies": {
+    "autoprefixer": "^6.3.3",
+    "bootstrap": "^3.3.6",
+    "browserify-css": "^0.9.0",
+    "jquery": "^2.2.2",
+    "jsdom": "^8.0.4",
+    "react": "^0.14.7",
+    "react-bootstrap": "^0.28.3",
+    "react-dom": "^0.14.7",
+    "fs": "^0.0.2",
+    "babelify": "^7.2.0",
+    "babel-preset-react": "6.5.0",
+    "classnames": "^2.1.2",
+    "js-md5": "^0.3.0",
+    "postcss-loader": "^0.4.4",
+    "react-inlinesvg": "^0.4.1",
+    "react-router": "^0.13.3",
+    "reflux": "~0.2.4",
+    "superagent": "^1.2.0",
+    "jose": "0.3.2"
+  },
+  "devDependencies": {
+  	"babel-core": "latest",
+  	"browserify-css": "latest",
+    "babel-eslint": "latest",
+    "babel-loader": "latest",
+    "browserify": "latest",
+    "clean-css": "latest",
+    "copyfiles": "latest",
+    "babel-preset-es2015": "latest",
+    "eslint": "latest",
+    "eslint-loader": "latest",
+    "eslint-plugin-react": "latest",
+    "express": "latest",
+    "extract-text-webpack-plugin": "latest",
+    "jsx-loader": "latest",
+    "scssify": "latest",
+    "style-loader": "latest"
+    },
+  "scripts": {
+    "build": "src-web/build.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/jrodan/vothing-poc.git"
+  },
+  "bugs": {
+    "url": "https://github.com/jrodan/vothing-poc/issues"
+  },
+  "author": "Jan Rodan - PRODYNA AG",
+  "license": "MIT",
+  "browserify": {
+    "transform": [
+    	"sassify",
+    	["babelify", { "presets": ["es2015", "react"] }],
+    	"browserify-css"
+    	],
+    "ascii_only": "true",
+    "beautify": "false"
+  },
+  "browserify-css": {
+        "autoInject": true,
+        "minify": true,
+        "rootDir": "."
+  }
+}

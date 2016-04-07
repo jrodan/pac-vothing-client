@@ -1,0 +1,122 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+	<!-- <parent> <groupId>com.prodyna.pac.vothing</groupId> <artifactId>vothing</artifactId> 
+		<version>0.0.1-SNAPSHOT</version> </parent> -->
+	<groupId>com.prodyna.pac.vothing</groupId>
+	<version>0.0.1-SNAPSHOT</version>
+	<artifactId>vothing-client</artifactId>
+	<packaging>war</packaging>
+
+	<dependencies>
+		<dependency>
+			<groupId>com.prodyna.pac.vothing</groupId>
+			<artifactId>vothing-core</artifactId>
+			<version>${project.version}</version>
+			<scope>provided</scope>
+		</dependency>
+	</dependencies>
+
+	<build>
+		<!-- <pluginManagement> <plugins> <plugin> <groupId>org.codehaus.mojo</groupId> 
+			<artifactId>exec-maven-plugin</artifactId> <version>1.4.0</version> </plugin> 
+			</plugins> </pluginManagement> -->
+		<plugins>
+			<!-- <plugin> <groupId>org.jboss.as.plugins</groupId> <artifactId>jboss-as-maven-plugin</artifactId> 
+				<version>7.7.Final</version> <configuration> <hostname>localhost</hostname> 
+				<port>9990</port> <username>admin</username> <password>1234</password> </configuration> 
+				</plugin> -->
+
+			<plugin>
+				<groupId>org.wildfly.plugins</groupId>
+				<artifactId>wildfly-maven-plugin</artifactId>
+				<version>1.1.0.Alpha7</version>
+				<configuration>
+					<hostname>macci</hostname>
+					<port>9990</port>
+					<!-- <username>mkyong</username> <password>password</password> <name>spring4ajax.war</name> -->
+				</configuration>
+				<executions>
+
+					<execution>
+						<id>undeploy</id>
+						<phase>clean</phase>
+						<goals>
+							<goal>undeploy</goal>
+						</goals>
+						<configuration>
+							<ignoreMissingDeployment>true</ignoreMissingDeployment>
+						</configuration>
+					</execution>
+
+					<execution>
+						<id>deploy</id>
+						<phase>clean</phase>
+						<goals>
+							<goal>deploy</goal>
+						</goals>
+					</execution>
+				</executions>
+			</plugin>
+
+			<plugin>
+				<groupId>com.github.eirslett</groupId>
+				<artifactId>frontend-maven-plugin</artifactId>
+				<version>0.0.28</version>
+				<configuration>
+					<workingDirectory>src/main/webapp/</workingDirectory>
+				</configuration>
+				<executions>
+					<execution>
+						<id>install-node-and-npm</id>
+						<phase>compile</phase>
+						<goals>
+							<goal>install-node-and-npm</goal>
+						</goals>
+						<configuration>
+							<nodeVersion>v5.7.0</nodeVersion>
+							<npmVersion>3.6.0</npmVersion>
+							<installDirectory>build</installDirectory>
+							<workingDirectory>build</workingDirectory>
+						</configuration>
+					</execution>
+					<execution>
+						<id>install-npm-dependencies</id>
+						<phase>compile</phase>
+						<goals>
+							<goal>npm</goal>
+						</goals>
+						<configuration>
+							<arguments>install</arguments>
+							<installDirectory>build</installDirectory>
+							<workingDirectory>build</workingDirectory>
+						</configuration>
+					</execution>
+					<execution>
+						<id>npm-build</id>
+						<phase>compile</phase>
+						<goals>
+							<goal>npm</goal>
+						</goals>
+						<configuration>
+							<arguments>run-script build</arguments>
+							<installDirectory>build</installDirectory>
+							<workingDirectory>build</workingDirectory>
+						</configuration>
+					</execution>
+				</executions>
+			</plugin>
+
+
+
+
+			<!-- <plugin> <groupId>org.codehaus.mojo</groupId> <artifactId>exec-maven-plugin</artifactId> 
+				<executions> <execution> <id>exec-npm-install</id> <phase>initialize</phase> 
+				<configuration> <executable>npm</executable> <arguments> <argument>install</argument> 
+				</arguments> </configuration> <goals> <goal>exec</goal> </goals> </execution> 
+				</executions> </plugin> -->
+
+		</plugins>
+	</build>
+
+</project>
