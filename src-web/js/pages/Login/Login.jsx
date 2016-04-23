@@ -4,7 +4,7 @@ import Reflux from 'reflux';
 import ReactDOM from 'react-dom';
 
 import AuthStore from '../../stores/AuthStore';
-import AuthActions from '../../actions/AuthActions';
+import Actions from '../../actions/Actions';
 
 import props from '../../config.js';
 
@@ -33,7 +33,7 @@ var Login = React.createClass({
   _handleSubmit(event) {
     event.preventDefault();
 
-    AuthActions.login(
+    Actions.login(
       ReactDOM.findDOMNode(this.refs.email).value,
       ReactDOM.findDOMNode(this.refs.password).value
     );

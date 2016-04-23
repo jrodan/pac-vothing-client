@@ -3,7 +3,7 @@ import Router from 'react-router';
 import Reflux from 'reflux';
 
 import AuthStore from '../../stores/AuthStore';
-import AuthActions from '../../actions/AuthActions';
+import Actions from '../../actions/Actions';
 
 import props from '../../config.js';
 

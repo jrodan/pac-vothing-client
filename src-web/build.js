@@ -14,7 +14,7 @@ mkdir -p 'src/main/webapp/js'
 mkdir -p 'src/main/webapp/fonts'
 mkdir -p 'src/main/webapp/css'
 echo "~ browserify"
-browserify -t [ babelify --presets [ es2015 react ] scssify browserify-css] src-web/js/main.jsx > src/main/webapp/js/bundle.js
+browserify -t [ babelify --presets [ es2015 react ] scssify browserify-css] -t reactify src-web/js/main.jsx > src/main/webapp/js/bundle.js
 echo "~ copyfiles"
 copyfiles -f 'src-web/index.html' 'src/main/webapp/'
 copyfiles -f 'src-web/fonts/*' 'src/main/webapp/fonts/'

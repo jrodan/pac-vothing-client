@@ -22,7 +22,10 @@
     "react-router": "^0.13.3",
     "reflux": "~0.2.4",
     "superagent": "^1.2.0",
-    "jose": "0.3.2"
+    "jose": "0.3.2",
+    "reactify": "^1.1.1",
+    "body-parser": "^1.4.3",
+    "express": "^4.4.5"
   },
   "devDependencies": {
   	"babel-core": "latest",

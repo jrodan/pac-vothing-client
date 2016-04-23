@@ -3,7 +3,7 @@ import Router from 'react-router';
 import Reflux from 'reflux';
 
 import AuthStore from '../../stores/AuthStore';
-import AuthActions from '../../actions/AuthActions';
+import Actions from '../../actions/Actions';
 
 var AuthStatus = React.createClass({
   mixins: [
@@ -26,7 +26,7 @@ var AuthStatus = React.createClass({
   },
 
   handleLogout() {
-    AuthActions.logout();
+    Actions.logout();
     //this.transitionTo('/vothing/');
     window.location.reload();
     //this.transitionTo( this.getCurrentPath(), null, { forceRefresh: new Date() } );

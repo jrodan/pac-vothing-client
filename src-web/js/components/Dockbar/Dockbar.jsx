@@ -3,11 +3,14 @@ import Router from 'react-router';
 import Reflux from 'reflux';
 
 import AuthStore from '../../stores/AuthStore';
-import AuthActions from '../../actions/AuthActions';
+import Actions from '../../actions/Actions';
 import AuthStatus from '../../components/AuthStatus';
+
+import SurveyList from '../../components/Survey';
 
 var Dockbar = React.createClass({
 	mixins: [
+	Router.Link,
     Router.Navigation,
     Reflux.connect(AuthStore),
     Reflux.ListenerMixin
@@ -23,9 +26,13 @@ var Dockbar = React.createClass({
   onAuthChange(auth) {
     this.setState(auth);
   },
+  
+  handleClick(event) {
+  	
+  },
 
   handleLogout() {
-    AuthActions.logout();
+    Actions.logout();
     window.location.reload();
   },
   render() {
@@ -35,7 +42,7 @@ var Dockbar = React.createClass({
   			
 	  			<div className="navbar-header">
 			      <button type="button" className="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar-collapse-1" aria-expanded="false">
-			        <span className="sr-only">Toggle navigation</span>
+			        <span className="src-only">Toggle navigation</span>
 			        <span className="icon-bar"></span>
 			        <span className="icon-bar"></span>
 			        <span className="icon-bar"></span>
@@ -46,10 +53,13 @@ var Dockbar = React.createClass({
 	  			<div className="collapse navbar-collapse" id="navbar-collapse-1">
 	      			<ul className="nav navbar-nav">
 	      				<li>
-	      					<a href="#" className="buttonrow">All Surveys</a>
+	      					<Link to="SurveyList">Home</Link> <!--<a href="#" className="buttonrow">All Surveys</a>-->
 	      				</li>
 	      				<li>
 	      					<a href="#" className="buttonrow">Latest Surveys</a>
+	      				</li>
+	      				<li>
+	      					<a href="#" onClick={ this.handleClick } action="addsurvey" className="buttonrow">Add Survey</a>
 	      				</li>
 			        </ul>
 			        

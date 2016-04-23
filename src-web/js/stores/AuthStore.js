@@ -1,5 +1,5 @@
 import Reflux from 'reflux';
-import Actions from '../actions/AuthActions';
+import Actions from '../actions/Actions';
 
 import props from '../config.js';
 
