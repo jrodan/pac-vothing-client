@@ -1,8 +1,8 @@
 {
-  "name": "vothing-html-clickdummy",
+  "name": "vothing-client",
   "version": "0.0.1",
   "description": "",
-  "main": "src-web/index.html",
+  "main": "src/index.html",
   "dependencies": {
     "autoprefixer": "^6.3.3",
     "bootstrap": "^3.3.6",
@@ -23,19 +23,18 @@
     "reflux": "~0.2.4",
     "superagent": "^1.2.0",
     "jose": "0.3.2",
-    "reactify": "^1.1.1",
     "body-parser": "^1.4.3",
-    "express": "^4.4.5"
+    "express": "^4.4.5",
+    "sassify": "^0.10.0",
+    "babel-preset-es2015": "latest",
+    "connect": "3.4.1",
+    "serve-static": "latest",
+    "connect-livereload": "latest"
   },
   "devDependencies": {
-  	"babel-core": "latest",
-  	"browserify-css": "latest",
-    "babel-eslint": "latest",
-    "babel-loader": "latest",
     "browserify": "latest",
     "clean-css": "latest",
     "copyfiles": "latest",
-    "babel-preset-es2015": "latest",
     "eslint": "latest",
     "eslint-loader": "latest",
     "eslint-plugin-react": "latest",
@@ -46,7 +45,7 @@
     "style-loader": "latest"
     },
   "scripts": {
-    "build": "src-web/build.js"
+    "build": "./build.js"
   },
   "repository": {
     "type": "git",

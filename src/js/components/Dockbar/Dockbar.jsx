@@ -8,9 +8,10 @@ import AuthStatus from '../../components/AuthStatus';
 
 import SurveyList from '../../components/Survey';
 
+var Link = Router.Link;
+
 var Dockbar = React.createClass({
 	mixins: [
-	Router.Link,
     Router.Navigation,
     Reflux.connect(AuthStore),
     Reflux.ListenerMixin
@@ -53,7 +54,7 @@ var Dockbar = React.createClass({
 	  			<div className="collapse navbar-collapse" id="navbar-collapse-1">
 	      			<ul className="nav navbar-nav">
 	      				<li>
-	      					<Link to="SurveyList">Home</Link> <!--<a href="#" className="buttonrow">All Surveys</a>-->
+	      					<Link to="SurveyList">Home</Link> /*<a href="#" className="buttonrow">All Surveys</a>*/
 	      				</li>
 	      				<li>
 	      					<a href="#" className="buttonrow">Latest Surveys</a>

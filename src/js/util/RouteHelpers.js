@@ -8,7 +8,9 @@ var LoginRequired = React.createClass({
     willTransitionTo: function (transition, params, query, callback) {
       if(!AuthStore.loggedIn()){
         // go over to login page
-        transition.redirect('/vothing#/login', null, { redirect: transition.path });
+        //transition.redirect('login', null, { redirect: transition.path });
+        //transition.redirect('/login', {}, { 'nextPath': transition.path });
+        transition.redirect('/login');
       }
       callback();
     }

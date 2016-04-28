@@ -1,4 +1,9 @@
+var serverBase = "http://macci:8081/";
+
 var props = {
+	server : {
+		base: serverBase
+	},
 	path : {
 		login: "/vothing-core/vothing/security/login",
 		logout: "/vothing-core/vothing/security/logout",

@@ -25,7 +25,7 @@ var Login = React.createClass({
     this.setState(auth);
 
     if(this.state.loggedIn){
-      var redirectUrl = this.getQuery().redirect || '/vothing/';
+      var redirectUrl = this.getQuery().redirect || '/';
       this.replaceWith(redirectUrl);
     }
   },
