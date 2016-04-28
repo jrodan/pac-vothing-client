@@ -1,19 +1,15 @@
 import React from 'react';
-import Router from 'react-router';
+import { Navigation, Link } from 'react-router';
 import Reflux from 'reflux';
 
 import AuthStore from '../../stores/AuthStore';
 import Actions from '../../actions/Actions';
 import AuthStatus from '../../components/AuthStatus';
 
-import SurveyList from '../../components/Survey';
-
-var Link = Router.Link;
-
 var Dockbar = React.createClass({
 	mixins: [
-    Router.Navigation,
-    Reflux.connect(AuthStore),
+	Navigation,
+    Reflux.connect(AuthStore, Actions),
     Reflux.ListenerMixin
   ],
   componentWillMount () {
@@ -54,13 +50,13 @@ var Dockbar = React.createClass({
 	  			<div className="collapse navbar-collapse" id="navbar-collapse-1">
 	      			<ul className="nav navbar-nav">
 	      				<li>
-	      					<Link to="SurveyList">Home</Link> /*<a href="#" className="buttonrow">All Surveys</a>*/
+	      					<Link to="surveys-all">Home</Link>
 	      				</li>
 	      				<li>
-	      					<a href="#" className="buttonrow">Latest Surveys</a>
+	      					<Link to="surveys-latest">Latest Surveys</Link>
 	      				</li>
 	      				<li>
-	      					<a href="#" onClick={ this.handleClick } action="addsurvey" className="buttonrow">Add Survey</a>
+	      					<Link to="survey-add">Add Survey</Link>
 	      				</li>
 			        </ul>
 			        

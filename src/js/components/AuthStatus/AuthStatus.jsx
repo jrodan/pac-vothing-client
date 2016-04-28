@@ -7,8 +7,7 @@ import Actions from '../../actions/Actions';
 
 var AuthStatus = React.createClass({
   mixins: [
-    Router.Navigation,
-    Reflux.connect(AuthStore),
+    Reflux.connect(AuthStore, Actions),
     Reflux.ListenerMixin
   ],
 

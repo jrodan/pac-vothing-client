@@ -1,16 +1,16 @@
-var serverBase = "http://macci:8081/";
+var serverBase = "http://macci:8081";
 
 var props = {
 	server : {
 		base: serverBase
 	},
 	path : {
-		login: "/vothing-core/vothing/security/login",
-		logout: "/vothing-core/vothing/security/logout",
-		votelist: "/vothing-core/restricted/vote/list",
-		votelist: "/vothing-core/restricted/vote/list/",
-		voteadd: "/vothing-core/restricted/vote/add/",
-		surveylist: "/vothing-core/restricted/survey/list",
+		login: serverBase+"/vothing-core/vothing/security/login",
+		logout: serverBase+"/vothing-core/vothing/security/logout",
+		votelist: serverBase+"/vothing-core/restricted/vote/list",
+		votelist: serverBase+"/vothing-core/restricted/vote/list/",
+		voteadd: serverBase+"/vothing-core/restricted/vote/add/",
+		surveylist: serverBase+"/vothing-core/restricted/survey/list",
 	},
 	user : {
 		defaultemail: "default@vothing.com",

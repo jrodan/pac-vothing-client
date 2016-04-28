@@ -1,5 +1,4 @@
 import React from 'react';
-import Router from 'react-router';
 
 import AuthStore from '../stores/AuthStore';
 
@@ -10,14 +9,16 @@ var LoginRequired = React.createClass({
         // go over to login page
         //transition.redirect('login', null, { redirect: transition.path });
         //transition.redirect('/login', {}, { 'nextPath': transition.path });
-        transition.redirect('/login');
+        transition.redirect('login');
       }
       callback();
     }
   },
   render () {
     return (
-      <Router.RouteHandler/>
+      <div>
+        {this.props.children}
+      </div>
     );
   }
 });

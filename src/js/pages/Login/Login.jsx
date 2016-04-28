@@ -1,7 +1,7 @@
 import React from 'react';
-import Router from 'react-router';
 import Reflux from 'reflux';
 import ReactDOM from 'react-dom';
+import { Navigation} from 'react-router';
 
 import AuthStore from '../../stores/AuthStore';
 import Actions from '../../actions/Actions';
@@ -10,9 +10,8 @@ import props from '../../config.js';
 
 var Login = React.createClass({
   mixins: [
-    Router.State,
-    Router.Navigation,
-    Reflux.connect(AuthStore),
+    Navigation,
+    Reflux.connect(AuthStore, Actions),
     Reflux.ListenerMixin
   ],
 
@@ -25,8 +24,9 @@ var Login = React.createClass({
     this.setState(auth);
 
     if(this.state.loggedIn){
-      var redirectUrl = this.getQuery().redirect || '/';
-      this.replaceWith(redirectUrl);
+      this.transitionTo("");
+      //var redirectUrl = /*this.getQuery().redirect ||*/ '';
+      //this.replaceWith(redirectUrl);
     }
   },
 
