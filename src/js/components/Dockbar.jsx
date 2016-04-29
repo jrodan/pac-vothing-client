@@ -19,6 +19,10 @@ var Dockbar = React.createClass({
   onAuthChange(auth) {
     this.setState(auth);
   },
+  handleLogout() {
+  	Actions.logout();
+  	this.setState();
+  },
   render() {
   	return (
   		<nav className="navbar navbar-default dockbar">
@@ -37,13 +41,13 @@ var Dockbar = React.createClass({
 	  			<div className="collapse navbar-collapse" id="navbar-collapse-1">
 	      			<ul className="nav navbar-nav">
 	      				<li>
-	      					<Link to="surveys-all">Home</Link>
+	      					<Link activeClassName="active" to="surveysall">Home</Link>
 	      				</li>
 	      				<li>
-	      					<Link to="surveys-latest">Latest Surveys</Link>
+	      					<Link activeClassName="active" to="surveyslatest">Latest Surveys</Link>
 	      				</li>
 	      				<li>
-	      					<Link to="survey-add">Add Survey</Link>
+	      					<Link activeClassName="active" to="surveyadd">Add Survey</Link>
 	      				</li>
 			        </ul>
 			        
@@ -52,7 +56,7 @@ var Dockbar = React.createClass({
 	      					<p className="username navbar-text">{ this.state.user.forename }</p>
 	      				</li>
 	      				<li>
-	      					<a href="#" onClick={ Actions.logout() } className="login">Log Out</a>
+	      					<a href="#" onClick={ this.handleLogout.bind(this) } className="login">Log Out</a>
 	      				</li>
 			        </ul>
 		        </div>

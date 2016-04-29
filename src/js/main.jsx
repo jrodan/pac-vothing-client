@@ -1,6 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import { Router, Route, IndexRoute, hashHistory } from 'react-router';
+import { Router, Route, hashHistory, IndexRoute } from 'react-router';
 
 import Master from './pages/Master.jsx';
 import Login from './components/Login.jsx';
@@ -17,12 +17,12 @@ var App = React.createClass({
 ReactDOM.render(
 	<Router history={hashHistory}>
 		<Route path="/" component={App}>
-			<Route component={Login} path="login"/>
-	    	<IndexRoute component={Master} >
-		    	<Route path="surveys-all" component={SurveyList}/>
-				<Route path="surveys-latest" component={SurveyList}/>
-				<Route path="survey-add" component={SurveyEdit}/>
-	    	</IndexRoute>
+	    	<Route component={Master} >
+	    		<IndexRoute component={SurveyList}/>
+		    	<Route path="surveysall" component={SurveyList}/>
+				<Route path="surveyslatest" component={SurveyList}/>
+				<Route path="surveyadd" component={SurveyEdit}/>
+	    	</Route>
 	  	</Route>
 
   	</Router>

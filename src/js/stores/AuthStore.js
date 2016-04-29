@@ -107,6 +107,7 @@ var AuthStore = Reflux.createStore({
   },
 
   onLogout () {
+    console.log("AuthStore: logout triggered");
     // clear it all
     this.jwt = null;
     this.claims = null;
