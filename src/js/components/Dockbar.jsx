@@ -1,36 +1,23 @@
 import React from 'react';
-import { Navigation, Link } from 'react-router';
+import { browserHistory, Link } from 'react-router';
 import Reflux from 'reflux';
 
-import AuthStore from '../../stores/AuthStore';
-import Actions from '../../actions/Actions';
-import AuthStatus from '../../components/AuthStatus';
+import AuthStore from '../stores/AuthStore.js';
+import Actions from '../actions/Actions.js';
 
 var Dockbar = React.createClass({
 	mixins: [
-	Navigation,
     Reflux.connect(AuthStore, Actions),
     Reflux.ListenerMixin
   ],
   componentWillMount () {
     this.setState(AuthStore.getState());
   },
-
   componentDidMount () {
     this.listenTo(AuthStore, this.onAuthChange);
   },
-
   onAuthChange(auth) {
     this.setState(auth);
-  },
-  
-  handleClick(event) {
-  	
-  },
-
-  handleLogout() {
-    Actions.logout();
-    window.location.reload();
   },
   render() {
   	return (
@@ -65,7 +52,7 @@ var Dockbar = React.createClass({
 	      					<p className="username navbar-text">{ this.state.user.forename }</p>
 	      				</li>
 	      				<li>
-	      					<a href="#" onClick={ this.handleLogout } className="login">Log Out</a>
+	      					<a href="#" onClick={ Actions.logout() } className="login">Log Out</a>
 	      				</li>
 			        </ul>
 		        </div>

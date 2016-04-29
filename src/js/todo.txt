@@ -1,2 +1,5 @@
 - use bootstrap default theme
-- 
+- use npm config module for application configurations
+- fix npm module versions
+- show survey list
+- add survey

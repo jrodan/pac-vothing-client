@@ -4,6 +4,10 @@
 		"selected_items":
 		[
 			[
+				"Surve",
+				"SurveyList"
+			],
+			[
 				"Sur",
 				"SurveyList"
 			],
@@ -15,6 +19,14 @@
 	},
 	"buffers":
 	[
+		{
+			"file": "src/js/main.jsx",
+			"settings":
+			{
+				"buffer_size": 1189,
+				"line_ending": "Unix"
+			}
+		}
 	],
 	"build_system": "",
 	"build_system_choices":
@@ -23,18 +35,23 @@
 	"build_varint": "",
 	"command_palette":
 	{
-		"height": 0.0,
-		"last_filter": "",
+		"height": 87.0,
+		"last_filter": "install",
 		"selected_items":
 		[
+			[
+				"install",
+				"Package Control: Install Package"
+			]
 		],
-		"width": 0.0
+		"width": 521.0
 	},
 	"console":
 	{
-		"height": 0.0,
+		"height": 126.0,
 		"history":
 		[
+			"import urllib.request,os,hashlib; h = '2915d1851351e5ee549c20394736b442' + '8bc59f460fa1548d1514676163dafc88'; pf = 'Package Control.sublime-package'; ipp = sublime.installed_packages_path(); urllib.request.install_opener( urllib.request.build_opener( urllib.request.ProxyHandler()) ); by = urllib.request.urlopen( 'http://packagecontrol.io/' + pf.replace(' ', '%20')).read(); dh = hashlib.sha256(by).hexdigest(); print('Error validating download (got %s instead of %s), please try manual install' % (dh, h)) if dh != h else open(os.path.join( ipp, pf), 'wb' ).write(by)"
 		]
 	},
 	"distraction_free":
@@ -48,21 +65,40 @@
 	},
 	"expanded_folders":
 	[
-		"/Users/jrodan/Dropbox/Prodyna/PAC/workspace/vothing/vothing-client"
+		"/Users/jrodan/Dropbox/Prodyna/PAC/workspace/vothing/vothing-client",
+		"/Users/jrodan/Dropbox/Prodyna/PAC/workspace/vothing/vothing-client/src",
+		"/Users/jrodan/Dropbox/Prodyna/PAC/workspace/vothing/vothing-client/src/js",
+		"/Users/jrodan/Dropbox/Prodyna/PAC/workspace/vothing/vothing-client/src/js/actions",
+		"/Users/jrodan/Dropbox/Prodyna/PAC/workspace/vothing/vothing-client/src/js/components",
+		"/Users/jrodan/Dropbox/Prodyna/PAC/workspace/vothing/vothing-client/src/js/pages",
+		"/Users/jrodan/Dropbox/Prodyna/PAC/workspace/vothing/vothing-client/src/js/stores",
+		"/Users/jrodan/Dropbox/Prodyna/PAC/workspace/vothing/vothing-client/src/js/util"
 	],
 	"file_history":
 	[
-		"/Users/jrodan/Dropbox/Prodyna/PAC/workspace/vothing/vothing-client/vothing-client",
-		"/Users/jrodan/Dropbox/Prodyna/PAC/workspace/vothing/vothing-client/src/js/main.jsx",
+		"/Users/jrodan/Dropbox/Prodyna/PAC/workspace/vothing/vothing-client/src/js/components/Dockbar.jsx",
+		"/Users/jrodan/Dropbox/Prodyna/PAC/workspace/vothing/vothing-client/src/js/components/Login.jsx",
+		"/Users/jrodan/Dropbox/Prodyna/PAC/workspace/vothing/vothing-client/src/js/components/SurveyEdit.jsx",
+		"/Users/jrodan/Dropbox/Prodyna/PAC/workspace/vothing/vothing-client/src/js/components/Survey.jsx",
+		"/Users/jrodan/Dropbox/Prodyna/PAC/workspace/vothing/vothing-client/src/js/components/SurveyList.jsx",
+		"/Users/jrodan/Dropbox/Prodyna/PAC/workspace/vothing/vothing-client/src/js/pages/Master.jsx",
+		"/Users/jrodan/Dropbox/Prodyna/PAC/workspace/vothing/vothing-client/src/js/components/AuthStatus.jsx",
+		"/Users/jrodan/Dropbox/Prodyna/PAC/workspace/vothing/vothing-client/src/js/components/Survey/SurveyList.jsx",
+		"/Users/jrodan/Dropbox/Prodyna/PAC/workspace/vothing/vothing-client/src/js/components/Survey/SurveyEdit.jsx",
 		"/Users/jrodan/Dropbox/Prodyna/PAC/workspace/vothing/vothing-client/src/js/util/RouteHelpers.js",
-		"/Users/jrodan/Dropbox/Prodyna/PAC/workspace/vothing/vothing-client/src/js/pages/Master/Master.jsx",
+		"/Users/jrodan/Dropbox/Prodyna/PAC/workspace/vothing/vothing-client/src/js/main.jsx",
+		"/Users/jrodan/Dropbox/Prodyna/PAC/workspace/vothing/vothing-client/src/js/components/Survey/Survey.jsx",
+		"/Users/jrodan/Dropbox/Prodyna/PAC/workspace/vothing/vothing-client/src/js/pages/Login/Login.jsx",
 		"/Users/jrodan/Dropbox/Prodyna/PAC/workspace/vothing/vothing-client/src/js/components/Dockbar/Dockbar.jsx",
+		"/Users/jrodan/Dropbox/Prodyna/PAC/workspace/vothing/vothing-client/src/js/components/AuthStatus/AuthStatus.jsx",
+		"/Users/jrodan/Dropbox/Prodyna/PAC/workspace/vothing/vothing-client/src/js/pages/Master/Master.jsx",
+		"/Users/jrodan/Dropbox/Prodyna/PAC/workspace/vothing/vothing-client/src/js/config.js",
+		"/Users/jrodan/dev/pac/wildfly-10.0.0.Final/standalone/configuration/standalone.xml",
+		"/Users/jrodan/Dropbox/Prodyna/PAC/workspace/vothing/vothing-client/package.json",
+		"/Users/jrodan/Dropbox/Prodyna/PAC/workspace/vothing/vothing-client/src/js/pages/Home/Home.jsx",
+		"/Users/jrodan/Dropbox/Prodyna/PAC/workspace/vothing/vothing-client/vothing-client",
 		"/Users/jrodan/Dropbox/Prodyna/PAC/workspace/vothing/vothing-client/src/js/routes.jsx",
 		"/Users/jrodan/Dropbox/wishlist.txt",
-		"/Users/jrodan/Dropbox/Prodyna/PAC/workspace/vothing/vothing-client/src/js/components/Survey/SurveyList.jsx",
-		"/Users/jrodan/Dropbox/Prodyna/PAC/workspace/vothing/vothing-client/src/js/components/Survey/Survey.jsx",
-		"/Users/jrodan/Dropbox/Prodyna/PAC/workspace/vothing/vothing-client/src/js/components/Survey/SurveyEdit.jsx",
-		"/Users/jrodan/Dropbox/Prodyna/PAC/workspace/vothing/vothing-client/src/js/pages/Home/Home.jsx",
 		"/Users/jrodan/VirtualBox VMs/share/vpn.txt",
 		"/Users/jrodan/Dropbox/Prodyna/PAC/workspace/vothing/vothing-client/build.js",
 		"/Users/jrodan/Dropbox/Prodyna/PAC/workspace/vothing/vothing-client/src/js/util/RequestHelper.js",
@@ -70,7 +106,6 @@
 		"/Users/jrodan/Dropbox/Prodyna/PAC/workspace/vothing/vothing-client/src/js/components/Survey/package.json",
 		"/Users/jrodan/Dropbox/Prodyna/PAC/workspace/vothing/vothing-client/src/js/stores/AuthStore.js",
 		"/Users/jrodan/Dropbox/Prodyna/PAC/workspace/vothing/vothing-client/server.js",
-		"/Users/jrodan/Dropbox/Prodyna/PAC/workspace/vothing/vothing-client/package.json",
 		"/Users/jrodan/Dropbox/Prodyna/PAC/workspace/vothing/vothing-client/src/js/actions/Actions.js",
 		"/Users/jrodan/Dropbox/Prodyna/PAC/workspace/vothing/vothing-client/.babelrc",
 		"/Users/jrodan/Downloads/versionkey.sql",
@@ -99,7 +134,6 @@
 		"/Users/jrodan/Downloads/ST-BT/liferay-portal-6.2-ee-sp10_stbt/portal-ext.properties",
 		"/Users/jrodan/dev/lr/bosch/liferay-portal-6.2-ee-sp11/tomcat-7.0.42/conf/server.xml",
 		"/Users/jrodan/Downloads/ST-BT/liferay-portal-6.2-ee-sp10_stbt/tomcat-7.0.42/conf/server.xml",
-		"/Users/jrodan/dev/pac/wildfly-10.0.0.Final/standalone/configuration/standalone.xml",
 		"/Users/jrodan/VirtualBox VMs/share/st-notes.txt",
 		"/Users/jrodan/Dropbox/tecis/Kunden/Rodan Jan/König Albert/Unterlagen Axel - Übersicht/Zeitliche Einordnung.txt",
 		"/Users/jrodan/Dropbox/Prodyna/PAC/workspace/vothing/vothing-client/src/build.js",
@@ -169,27 +203,23 @@
 		"/Users/jrodan/Dropbox/Prodyna/PAC/workspace/vothing/vothing-client/src-web/js/util/StyleClasses.js",
 		"/Users/jrodan/Dropbox/Prodyna/PAC/workspace/vothing/vothing-client/src-web/js/pages/Login/package.json",
 		"/Users/jrodan/Dropbox/Prodyna/PAC/workspace/vothing/vothing-client/src-web/js/pages/Master/package.json",
-		"/Users/jrodan/Dropbox/Prodyna/PAC/workspace/vothing/vothing-client/src-web/build.js",
-		"/Users/jrodan/Dropbox/Prodyna/PAC/workspace/vothing/vothing-client/src/main/webapp/js/bundle.js",
-		"/Users/jrodan/Dropbox/Prodyna/PAC/workspace/vothing/vothing-client/src-web/js/index.js",
-		"/Users/jrodan/Dropbox/Prodyna/PAC/blog-example-reflux-auth-flow/package.json",
-		"/Users/jrodan/Dropbox/Prodyna/PAC/workspace/vothing/vothing-client/src-web/js/services/loginService.js",
-		"/Users/jrodan/Dropbox/Prodyna/PAC/workspace/vothing/vothing-client/src-web/js/components/login.js",
-		"/Users/jrodan/Desktop/60Response.txt",
-		"/Users/jrodan/Desktop/62Response.txt",
-		"/Users/jrodan/dev/lr/knoell/liferay-portal-6.2-ee-sp10/tomcat-7.0.42/webapps/ROOT/html/themes/_unstyled/templates/portal_normal.vm",
-		"/Users/jrodan/dev/lr/knoell/liferay-plugins-sdk-6.2/themes/knoell-theme/docroot/_diffs/templates/portal_normal.vm",
-		"/Users/jrodan/dev/lr/knoell/liferay-plugins-sdk-6.2/themes/knoell-theme/docroot/_diffs/templates/navigation.vm"
+		"/Users/jrodan/Dropbox/Prodyna/PAC/workspace/vothing/vothing-client/src-web/build.js"
 	],
 	"find":
 	{
-		"height": 23.0
+		"height": 35.0
 	},
 	"find_in_files":
 	{
 		"height": 93.0,
 		"where_history":
 		[
+			"/Users/jrodan/Dropbox/Prodyna/PAC/workspace/vothing/vothing-client/src/js",
+			"/Users/jrodan/Dropbox/Prodyna/PAC/workspace/vothing/vothing-client/src",
+			"/Users/jrodan/Dropbox/Prodyna/PAC/workspace/vothing/vothing-client/src/js",
+			"/Users/jrodan/Dropbox/Prodyna/PAC/workspace/vothing/vothing-client/src",
+			"/Users/jrodan/Dropbox/Prodyna/PAC/workspace/vothing/vothing-client/src/js",
+			"/Users/jrodan/Dropbox/Prodyna/PAC/workspace/vothing/vothing-client",
 			"/Users/jrodan/Dropbox/Prodyna/PAC/workspace/vothing/vothing-client/src/js"
 		]
 	},
@@ -198,6 +228,26 @@
 		"case_sensitive": false,
 		"find_history":
 		[
+			"AuthStatus",
+			"LoginRequired",
+			"RouteHelpers",
+			"Master",
+			"login",
+			"AuthStatus",
+			"Navigation",
+			"this.state.user.forename",
+			"RouteHandler",
+			"Home",
+			"SurveyList",
+			"login",
+			"connect",
+			"Reflux.connect",
+			"Reflux",
+			"router",
+			"State",
+			"Link",
+			"Navigation",
+			"mini",
 			"RouteHandler",
 			"Master",
 			"router",
@@ -259,8 +309,37 @@
 	"groups":
 	[
 		{
+			"selected": 0,
 			"sheets":
 			[
+				{
+					"buffer": 0,
+					"file": "src/js/main.jsx",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 1189,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								261,
+								261
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/JavaScript/JavaScript.sublime-syntax"
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 0,
+					"type": "text"
+				}
 			]
 		}
 	],
@@ -326,12 +405,12 @@
 	},
 	"select_symbol":
 	{
-		"height": 0.0,
+		"height": 392.0,
 		"last_filter": "",
 		"selected_items":
 		[
 		],
-		"width": 0.0
+		"width": 783.0
 	},
 	"selected_group": 0,
 	"settings":

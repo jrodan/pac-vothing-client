@@ -1,6 +1,0 @@
-{
-  "name": "AuthStatus",
-  "version": "0.0.0",
-  "private": true,
-  "main": "./AuthStatus.jsx"
-}

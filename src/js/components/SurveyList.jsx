@@ -1,11 +1,11 @@
 import React from 'react';
 import Reflux from 'reflux';
 
-import AuthStore from '../../stores/AuthStore';
-import Actions from '../../actions/Actions';
+import AuthStore from '../stores/AuthStore.js';
+import Actions from '../actions/Actions.js';
 import Survey from './Survey.jsx';
 
-import props from '../../config.js';
+import props from '../config.js';
 
 import jquery from "jquery";
 var $ = jquery;
