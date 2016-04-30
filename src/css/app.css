@@ -1,3 +1,13 @@
 @import url("bootstrap.min.css");
 @import url("bootstrap-responsive.css");
 
+.surveyedit .form-group .col {
+	padding-left: 0;
+	padding-right: 0;
+}
+
+.surveyedit .form-group .toolbar {
+	clear: both;
+	margin-top: 10px;
+}
+

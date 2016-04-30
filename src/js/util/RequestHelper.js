@@ -1,5 +1,4 @@
 import React from 'react';
-import Router from 'react-router';
 
 import AuthStore from '../stores/AuthStore';
 
@@ -12,4 +11,4 @@ var RequestHelper = React.createClass({
 
 });
 
-module.exports = { RequestHelper };
+module.exports = RequestHelper;

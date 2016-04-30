@@ -1,27 +1,22 @@
 import React from 'react';
 import Reflux from 'reflux';
+import jquery from 'jquery';
+var $ = jquery;
 
 import AuthStore from '../stores/AuthStore.js';
 import Actions from '../actions/Actions.js';
 import Survey from './Survey.jsx';
-
 import props from '../config.js';
 
-import jquery from "jquery";
-var $ = jquery;
-
 var SurveyList = React.createClass({
-	
-	getInitialState : function() {
+	getInitialState: function() {
 	    return {
 	      surveys : {}
 	    };
 	  },
-  
 	componentDidMount: function() {
-	  this.loadSurveys();
+	  	this.loadSurveys();
 	},
-	
 	loadSurveys: function(task, submitData) {
 		
 		var jwt = AuthStore.getJwt();
@@ -71,7 +66,7 @@ var SurveyList = React.createClass({
 		var surveys = this.state.surveys;
 
 		for (var i = 0; i < surveys.length; i++) {
-			rows.push(""+<Survey survey={surveys[i]} key={surveys[i].voteId}/>);
+			rows.push(<Survey survey={surveys[i]} key={surveys[i].voteId}/>);
 		}
       return (
 	      <div className="surveys">
@@ -81,4 +76,4 @@ var SurveyList = React.createClass({
   }
 });
 
-module.exports = { SurveyList };
+module.exports = SurveyList;

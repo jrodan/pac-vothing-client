@@ -19,27 +19,21 @@ var Dockbar = React.createClass({
   onAuthChange(auth) {
     this.setState(auth);
   },
-  handleLogout() {
+  handleLogout(event) {
   	Actions.logout();
-  	this.setState();
+  	//this.setState();
+  	this.forceUpdate();
   },
   render() {
   	return (
   		<nav className="navbar navbar-default dockbar">
   			<div className="container-fluid">
   			
-	  			<div className="navbar-header">
-			      <button type="button" className="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar-collapse-1" aria-expanded="false">
-			        <span className="src-only">Toggle navigation</span>
-			        <span className="icon-bar"></span>
-			        <span className="icon-bar"></span>
-			        <span className="icon-bar"></span>
-			      </button>
-			      <a className="navbar-brand" href="#">Dockbar</a>
-			    </div>
-	  		
 	  			<div className="collapse navbar-collapse" id="navbar-collapse-1">
 	      			<ul className="nav navbar-nav">
+	      				<li>
+	      					<img style={{maxWidth : '50px'}} src="img/vothing-small.png"/>
+	      				</li>
 	      				<li>
 	      					<Link activeClassName="active" to="surveysall">Home</Link>
 	      				</li>
@@ -56,7 +50,7 @@ var Dockbar = React.createClass({
 	      					<p className="username navbar-text">{ this.state.user.forename }</p>
 	      				</li>
 	      				<li>
-	      					<a href="#" onClick={ this.handleLogout.bind(this) } className="login">Log Out</a>
+	      					<a href="#" onClick={ this.handleLogout.bind(null,this) } className="login">logout</a>
 	      				</li>
 			        </ul>
 		        </div>

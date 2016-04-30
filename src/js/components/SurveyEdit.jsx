@@ -3,6 +3,7 @@ import Reflux from 'reflux';
 
 import AuthStore from '../stores/AuthStore.js';
 import Actions from '../actions/Actions.js';
+import { Button, FormGroup, FormControl, Checkbox, ButtonToolbar, ControlLabel, Row, Col } from 'react-bootstrap';
 
 import props from '../config.js';
 
@@ -10,10 +11,14 @@ import jquery from "jquery";
 var $ = jquery;
 
 var SurveyEdit = React.createClass({
-  /*getInitialState: function() {
-    return {name: ''};
+  getInitialState: function() {
+    return {
+      name: '',
+      options: [],
+      optionsKeys: 100
+    };
   },
-  handleAuthorChange: function(e) {
+  /*handleAuthorChange: function(e) {
     this.setState({name: e.target.value});
   },
   handleTextChange: function(e) {
@@ -30,12 +35,57 @@ var SurveyEdit = React.createClass({
     this.setState({author: '', text: ''});
     */
   },
+  addOption: function(event) {
+    var nameSurvey = this.state.name;
+    var key = this.state.optionsKeys++;
+    var options = this.state.options;
+    options.push({name: null, key: key});
+    this.setState({
+      name: nameSurvey,
+      options : options
+    });
+  },
+  removeOption: function(option) {
+    var options = this.state.options;
+    var index = options.indexOf(option);
+    options.splice(index, 1);
+    this.setState({options : options});
+  },
   render: function() {
+      var options = this.state.options;
       return (
         <div className="surveyedit">
         	<form onSubmit={this.handleSubmit}>
-        		<input name="name" type="text" value="" value={this.state.name}/>
-        		<input name="add" type="submit"/>
+        		
+            <FormGroup controlId="formControlsText">
+              <ControlLabel>Survey Name</ControlLabel>
+              <FormControl type="text" placeholder="Enter name" value={this.state.name}/>
+            </FormGroup>
+            <ControlLabel>Survey Options</ControlLabel>
+            <FormGroup controlId="formControlsText" className="surveyoptions">
+                
+            {options.map(function (option, index) {
+               var ref = "input_" + option.key;
+                 return (
+                      <div className="surveyoption" key={option.key}>
+                        <Col xs={9} md={9} className="col">
+                          <FormControl type="text" name={ref} value={option.name} ref={ref} placeholder="Enter description" />
+                        </Col>
+                        <Col xs={3} md={3} className="col">
+                          <Button type="button" bsStyle="link" onClick={ this.removeOption.bind(null,option) } bsSize="small">remove</Button>
+                        </Col>
+                      </div>
+                 )
+            }.bind(this))}
+                
+            </FormGroup>
+
+            <ButtonToolbar>
+              <Button type="button" bsStyle="success" onClick={ this.addOption.bind(null,this) }>Add Option</Button>
+            </ButtonToolbar>
+
+            <Button type="submit">Submit</Button>
+            
         	</form>
         </div>
       );
@@ -43,4 +93,4 @@ var SurveyEdit = React.createClass({
   
 });
 
-module.exports = { SurveyEdit };
+module.exports = SurveyEdit;

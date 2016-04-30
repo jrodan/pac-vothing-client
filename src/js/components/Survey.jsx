@@ -18,4 +18,4 @@ var Survey = React.createClass({
 
 });
 
-module.exports = { Survey };
+module.exports = Survey;

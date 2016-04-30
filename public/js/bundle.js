@@ -53823,12 +53823,13 @@ var Dockbar = _react2.default.createClass({
 		onAuthChange: function onAuthChange(auth) {
 				this.setState(auth);
 		},
-		handleLogout: function handleLogout() {
+		handleLogout: function handleLogout(event) {
 				_Actions2.default.logout();
-				this.setState();
+				//this.setState();
+				this.forceUpdate();
 		},
 		render: function render() {
-				return _react2.default.createElement('nav', { className: 'navbar navbar-default dockbar' }, _react2.default.createElement('div', { className: 'container-fluid' }, _react2.default.createElement('div', { className: 'navbar-header' }, _react2.default.createElement('button', { type: 'button', className: 'navbar-toggle collapsed', 'data-toggle': 'collapse', 'data-target': '#navbar-collapse-1', 'aria-expanded': 'false' }, _react2.default.createElement('span', { className: 'src-only' }, 'Toggle navigation'), _react2.default.createElement('span', { className: 'icon-bar' }), _react2.default.createElement('span', { className: 'icon-bar' }), _react2.default.createElement('span', { className: 'icon-bar' })), _react2.default.createElement('a', { className: 'navbar-brand', href: '#' }, 'Dockbar')), _react2.default.createElement('div', { className: 'collapse navbar-collapse', id: 'navbar-collapse-1' }, _react2.default.createElement('ul', { className: 'nav navbar-nav' }, _react2.default.createElement('li', null, _react2.default.createElement(_reactRouter.Link, { activeClassName: 'active', to: 'surveysall' }, 'Home')), _react2.default.createElement('li', null, _react2.default.createElement(_reactRouter.Link, { activeClassName: 'active', to: 'surveyslatest' }, 'Latest Surveys')), _react2.default.createElement('li', null, _react2.default.createElement(_reactRouter.Link, { activeClassName: 'active', to: 'surveyadd' }, 'Add Survey'))), _react2.default.createElement('ul', { className: 'nav navbar-nav navbar-right' }, _react2.default.createElement('li', null, _react2.default.createElement('p', { className: 'username navbar-text' }, this.state.user.forename)), _react2.default.createElement('li', null, _react2.default.createElement('a', { href: '#', onClick: this.handleLogout.bind(this), className: 'login' }, 'Log Out'))))));
+				return _react2.default.createElement('nav', { className: 'navbar navbar-default dockbar' }, _react2.default.createElement('div', { className: 'container-fluid' }, _react2.default.createElement('div', { className: 'collapse navbar-collapse', id: 'navbar-collapse-1' }, _react2.default.createElement('ul', { className: 'nav navbar-nav' }, _react2.default.createElement('li', null, _react2.default.createElement('img', { style: { maxWidth: '50px' }, src: 'img/vothing-small.png' })), _react2.default.createElement('li', null, _react2.default.createElement(_reactRouter.Link, { activeClassName: 'active', to: 'surveysall' }, 'Home')), _react2.default.createElement('li', null, _react2.default.createElement(_reactRouter.Link, { activeClassName: 'active', to: 'surveyslatest' }, 'Latest Surveys')), _react2.default.createElement('li', null, _react2.default.createElement(_reactRouter.Link, { activeClassName: 'active', to: 'surveyadd' }, 'Add Survey'))), _react2.default.createElement('ul', { className: 'nav navbar-nav navbar-right' }, _react2.default.createElement('li', null, _react2.default.createElement('p', { className: 'username navbar-text' }, this.state.user.forename)), _react2.default.createElement('li', null, _react2.default.createElement('a', { href: '#', onClick: this.handleLogout.bind(null, this), className: 'login' }, 'logout'))))));
 		}
 });
 
@@ -53934,7 +53935,7 @@ var Survey = _react2.default.createClass({
 
 });
 
-module.exports = { Survey: Survey };
+module.exports = Survey;
 
 },{"../config.js":516,"jquery":112,"react":486,"reflux":502}],514:[function(require,module,exports){
 'use strict';
@@ -53955,6 +53956,8 @@ var _Actions = require('../actions/Actions.js');
 
 var _Actions2 = _interopRequireDefault(_Actions);
 
+var _reactBootstrap = require('react-bootstrap');
+
 var _config = require('../config.js');
 
 var _config2 = _interopRequireDefault(_config);
@@ -53967,23 +53970,19 @@ function _interopRequireDefault(obj) {
   return obj && obj.__esModule ? obj : { default: obj };
 }
 
-function _defineProperty(obj, key, value) {
-  if (key in obj) {
-    Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true });
-  } else {
-    obj[key] = value;
-  }return obj;
-}
-
 var $ = _jquery2.default;
 
 var SurveyEdit = _react2.default.createClass({
   displayName: 'SurveyEdit',
 
-  /*getInitialState: function() {
-    return {name: ''};
+  getInitialState: function getInitialState() {
+    return {
+      name: '',
+      options: [],
+      optionsKeys: 100
+    };
   },
-  handleAuthorChange: function(e) {
+  /*handleAuthorChange: function(e) {
     this.setState({name: e.target.value});
   },
   handleTextChange: function(e) {
@@ -54000,15 +53999,35 @@ var SurveyEdit = _react2.default.createClass({
     this.setState({author: '', text: ''});
     */
   },
+  addOption: function addOption(event) {
+    var nameSurvey = this.state.name;
+    var key = this.state.optionsKeys++;
+    var options = this.state.options;
+    options.push({ name: null, key: key });
+    this.setState({
+      name: nameSurvey,
+      options: options
+    });
+  },
+  removeOption: function removeOption(option) {
+    var options = this.state.options;
+    var index = options.indexOf(option);
+    options.splice(index, 1);
+    this.setState({ options: options });
+  },
   render: function render() {
-    return _react2.default.createElement('div', { className: 'surveyedit' }, _react2.default.createElement('form', { onSubmit: this.handleSubmit }, _react2.default.createElement('input', _defineProperty({ name: 'name', type: 'text', value: '' }, 'value', this.state.name)), _react2.default.createElement('input', { name: 'add', type: 'submit' })));
+    var options = this.state.options;
+    return _react2.default.createElement('div', { className: 'surveyedit' }, _react2.default.createElement('form', { onSubmit: this.handleSubmit }, _react2.default.createElement(_reactBootstrap.FormGroup, { controlId: 'formControlsText' }, _react2.default.createElement(_reactBootstrap.ControlLabel, null, 'Survey Name'), _react2.default.createElement(_reactBootstrap.FormControl, { type: 'text', placeholder: 'Enter name', value: this.state.name })), _react2.default.createElement(_reactBootstrap.ControlLabel, null, 'Survey Options'), _react2.default.createElement(_reactBootstrap.FormGroup, { controlId: 'formControlsText', className: 'surveyoptions' }, options.map(function (option, index) {
+      var ref = "input_" + option.key;
+      return _react2.default.createElement('div', { className: 'surveyoption', key: option.key }, _react2.default.createElement(_reactBootstrap.Col, { xs: 9, md: 9, className: 'col' }, _react2.default.createElement(_reactBootstrap.FormControl, { type: 'text', name: ref, value: option.name, ref: ref, placeholder: 'Enter description' })), _react2.default.createElement(_reactBootstrap.Col, { xs: 3, md: 3, className: 'col' }, _react2.default.createElement(_reactBootstrap.Button, { type: 'button', bsStyle: 'link', onClick: this.removeOption.bind(null, option), bsSize: 'small' }, 'remove')));
+    }.bind(this))), _react2.default.createElement(_reactBootstrap.ButtonToolbar, null, _react2.default.createElement(_reactBootstrap.Button, { type: 'button', bsStyle: 'success', onClick: this.addOption.bind(null, this) }, 'Add Option')), _react2.default.createElement(_reactBootstrap.Button, { type: 'submit' }, 'Submit')));
   }
 
 });
 
-module.exports = { SurveyEdit: SurveyEdit };
+module.exports = SurveyEdit;
 
-},{"../actions/Actions.js":510,"../config.js":516,"../stores/AuthStore.js":519,"jquery":112,"react":486,"reflux":502}],515:[function(require,module,exports){
+},{"../actions/Actions.js":510,"../config.js":516,"../stores/AuthStore.js":519,"jquery":112,"react":486,"react-bootstrap":277,"reflux":502}],515:[function(require,module,exports){
 'use strict';
 
 var _react = require('react');
@@ -54018,6 +54037,10 @@ var _react2 = _interopRequireDefault(_react);
 var _reflux = require('reflux');
 
 var _reflux2 = _interopRequireDefault(_reflux);
+
+var _jquery = require('jquery');
+
+var _jquery2 = _interopRequireDefault(_jquery);
 
 var _AuthStore = require('../stores/AuthStore.js');
 
@@ -54035,10 +54058,6 @@ var _config = require('../config.js');
 
 var _config2 = _interopRequireDefault(_config);
 
-var _jquery = require('jquery');
-
-var _jquery2 = _interopRequireDefault(_jquery);
-
 function _interopRequireDefault(obj) {
 	return obj && obj.__esModule ? obj : { default: obj };
 }
@@ -54053,11 +54072,9 @@ var SurveyList = _react2.default.createClass({
 			surveys: {}
 		};
 	},
-
 	componentDidMount: function componentDidMount() {
 		this.loadSurveys();
 	},
-
 	loadSurveys: function loadSurveys(task, submitData) {
 
 		var jwt = _AuthStore2.default.getJwt();
@@ -54105,13 +54122,13 @@ var SurveyList = _react2.default.createClass({
 		var surveys = this.state.surveys;
 
 		for (var i = 0; i < surveys.length; i++) {
-			rows.push("" + _react2.default.createElement(_Survey2.default, { survey: surveys[i], key: surveys[i].voteId }));
+			rows.push(_react2.default.createElement(_Survey2.default, { survey: surveys[i], key: surveys[i].voteId }));
 		}
 		return _react2.default.createElement('div', { className: 'surveys' }, _react2.default.createElement('div', null, rows));
 	}
 });
 
-module.exports = { SurveyList: SurveyList };
+module.exports = SurveyList;
 
 },{"../actions/Actions.js":510,"../config.js":516,"../stores/AuthStore.js":519,"./Survey.jsx":513,"jquery":112,"react":486,"reflux":502}],516:[function(require,module,exports){
 "use strict";
@@ -54205,6 +54222,8 @@ var _reflux = require('reflux');
 
 var _reflux2 = _interopRequireDefault(_reflux);
 
+var _reactBootstrap = require('react-bootstrap');
+
 var _Dockbar = require('../components/Dockbar.jsx');
 
 var _Dockbar2 = _interopRequireDefault(_Dockbar);
@@ -54235,7 +54254,7 @@ var Master = _react2.default.createClass({
   },
   render: function render() {
     if (_AuthStore2.default.loggedIn()) {
-      return _react2.default.createElement('div', null, _react2.default.createElement(_Dockbar2.default, null), _react2.default.createElement('div', { className: 'container' }, _react2.default.createElement('div', { className: 'content row' }, _react2.default.createElement('div', { className: 'col-sm-4 col-lg-12 col-md-6' }, this.props.children))));
+      return _react2.default.createElement('div', null, _react2.default.createElement(_Dockbar2.default, null), _react2.default.createElement(_reactBootstrap.Grid, null, _react2.default.createElement(_reactBootstrap.Row, { className: 'show-grid' }, _react2.default.createElement(_reactBootstrap.Col, { xsHidden: true, md: 3 }), _react2.default.createElement(_reactBootstrap.Col, { xs: 12, md: 6 }, this.props.children), _react2.default.createElement(_reactBootstrap.Col, { xsHidden: true, md: 3 }))));
     } else {
       return _react2.default.createElement('div', { className: '' }, _react2.default.createElement(_Login2.default, null));
     }
@@ -54244,7 +54263,7 @@ var Master = _react2.default.createClass({
 
 module.exports = Master;
 
-},{"../components/Dockbar.jsx":511,"../components/Login.jsx":512,"../stores/AuthStore.js":519,"react":486,"reflux":502}],519:[function(require,module,exports){
+},{"../components/Dockbar.jsx":511,"../components/Login.jsx":512,"../stores/AuthStore.js":519,"react":486,"react-bootstrap":277,"reflux":502}],519:[function(require,module,exports){
 'use strict';
 
 var _reflux = require('reflux');

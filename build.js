@@ -19,6 +19,7 @@ browserify -t [ babelify --presets [ es2015 react ] scssify browserify-css] -t r
 echo "~ copyfiles"
 copyfiles -f 'src/index.html' 'public/'
 copyfiles -f 'src/fonts/*' 'public/fonts/'
+copyfiles -f 'src/img/*' 'public/img/'
 cp 'node_modules/bootstrap/dist/css/bootstrap.min.css' 'src/css/bootstrap.min.css'
 echo "~ cleancss"
 cleancss -o "public/css/app.min.css" "src/css/app.css"

@@ -1,5 +1,6 @@
 import React from 'react';
 import Reflux from 'reflux';
+import { Button, Grid, Row, Col } from 'react-bootstrap';
 import Dockbar from '../components/Dockbar.jsx';
 import AuthStore from '../stores/AuthStore.js';
 import Login from '../components/Login.jsx';
@@ -19,13 +20,15 @@ var Master = React.createClass({
       return (
         <div>
           <Dockbar />
-          <div className="container">
-            <div className="content row">
-              <div className="col-sm-4 col-lg-12 col-md-6">
+          <Grid>
+            <Row className="show-grid">
+              <Col xsHidden md={3}></Col>
+              <Col xs={12} md={6}>
                 {this.props.children}
-              </div>
-            </div>
-          </div>
+              </Col>
+              <Col xsHidden md={3}></Col>
+            </Row>
+          </Grid>
         </div>
       );
     } else {
