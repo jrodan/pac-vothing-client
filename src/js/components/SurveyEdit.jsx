@@ -3,7 +3,7 @@ import Reflux from 'reflux';
 
 import AuthStore from '../stores/AuthStore.js';
 import Actions from '../actions/Actions.js';
-import { Button, FormGroup, FormControl, Checkbox, ButtonToolbar, ControlLabel, Row, Col } from 'react-bootstrap';
+import { Clearfix, Button, FormGroup, FormControl, Checkbox, ButtonToolbar, ControlLabel, Row, Col } from 'react-bootstrap';
 
 import props from '../config.js';
 
@@ -62,29 +62,30 @@ var SurveyEdit = React.createClass({
               <FormControl type="text" placeholder="Enter name" value={this.state.name}/>
             </FormGroup>
             <ControlLabel>Survey Options</ControlLabel>
-            <FormGroup controlId="formControlsText" className="surveyoptions">
+            <FormGroup controlId="formControlsOptions" className="">
+              <Button type="button" bsStyle="success" onClick={ this.addOption.bind(null,this) }>Add Option</Button>
+            </FormGroup>
+            <FormGroup controlId="formControlsOptions" className="surveyoptions">
                 
-            {options.map(function (option, index) {
-               var ref = "input_" + option.key;
-                 return (
-                      <div className="surveyoption" key={option.key}>
-                        <Col xs={9} md={9} className="col">
-                          <FormControl type="text" name={ref} value={option.name} ref={ref} placeholder="Enter description" />
-                        </Col>
-                        <Col xs={3} md={3} className="col">
-                          <Button type="button" bsStyle="link" onClick={ this.removeOption.bind(null,option) } bsSize="small">remove</Button>
-                        </Col>
-                      </div>
-                 )
-            }.bind(this))}
-                
+              {options.map(function (option, index) {
+                 var ref = "input_" + index;
+                   return (
+                        <div className="surveyoption" key={option.key}>
+                          <Col xs={9} md={9} className="col">
+                            <FormControl type="text" name={ref} value={option.name} ref={ref} placeholder="Enter description" />
+                          </Col>
+                          <Col xs={3} md={3} className="col">
+                            <Button type="button" bsStyle="link" onClick={ this.removeOption.bind(null,option) } bsSize="small">remove</Button>
+                          </Col>
+                        </div>
+                   )
+              }.bind(this))}
+                <Clearfix></Clearfix>
             </FormGroup>
 
-            <ButtonToolbar>
-              <Button type="button" bsStyle="success" onClick={ this.addOption.bind(null,this) }>Add Option</Button>
-            </ButtonToolbar>
-
-            <Button type="submit">Submit</Button>
+            <FormGroup controlId="formControlsOptionsAdd" className="submitform">
+              <Button type="submit">Submit</Button>
+            </FormGroup>
             
         	</form>
         </div>

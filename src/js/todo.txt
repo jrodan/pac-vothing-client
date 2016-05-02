@@ -3,3 +3,4 @@
 - fix npm module versions
 - show survey list
 - add survey
+- add / edit survey validation

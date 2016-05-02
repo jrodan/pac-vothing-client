@@ -52,6 +52,7 @@ var SurveyList = React.createClass({
 		  			surveys: surveysResponse
 		  		});
 		  	}
+		  	console.log("surveysResponse "+surveysResponse);
 		  });
 		  
 		  loadRequest.fail(function(jqXHR, textStatus) {
