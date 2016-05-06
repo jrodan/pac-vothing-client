@@ -2,7 +2,7 @@ import React from 'react';
 import Reflux from 'reflux';
 import ReactDOM from 'react-dom';
 import { Router, browserHistory } from 'react-router';
-import { Button, Grid, Row, Col } from 'react-bootstrap';
+import { Button, Grid, Row, Col, Image } from 'react-bootstrap';
 
 import AuthStore from '../stores/AuthStore.js';
 import Actions from '../actions/Actions.js';
@@ -41,8 +41,11 @@ var Login = React.createClass({
     var formContent;
     if (!this.state.user) {
       formContent = (
-          <div>
+          <div className="loginform">
             { errorMessage }
+            <fieldset className="loginlogo">
+              <Image src="/img/vothing-large.png" rounded responsive />
+            </fieldset>
             <fieldset className="form-group">
               <label for="exampleInputEmail1">Email address</label>
               <input type="email" className="form-control" id="exampleInputEmail1" placeholder="Enter email" ref="email" defaultValue="default@vothing.com" />

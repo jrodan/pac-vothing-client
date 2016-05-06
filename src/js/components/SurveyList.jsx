@@ -52,7 +52,6 @@ var SurveyList = React.createClass({
 		  			surveys: surveysResponse
 		  		});
 		  	}
-		  	console.log("surveysResponse "+surveysResponse);
 		  });
 		  
 		  loadRequest.fail(function(jqXHR, textStatus) {
@@ -67,7 +66,7 @@ var SurveyList = React.createClass({
 		var surveys = this.state.surveys;
 
 		for (var i = 0; i < surveys.length; i++) {
-			rows.push(<Survey survey={surveys[i]} key={surveys[i].voteId}/>);
+			rows.push(<Survey survey={surveys[i]} key={surveys[i].id} row={i}/>);
 		}
       return (
 	      <div className="surveys">
