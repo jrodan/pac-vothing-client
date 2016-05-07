@@ -19,9 +19,10 @@ ReactDOM.render(
 		<Route path="/" component={App}>
 	    	<Route component={Master} >
 	    		<IndexRoute component={SurveyList}/>
-		    	<Route path="surveysall" component={SurveyList}/>
-				<Route path="surveyslatest" component={SurveyList}/>
-				<Route path="surveyadd" component={SurveyEdit}/>
+		    	<Route path="survey/list" component={SurveyList}/>
+				<Route path="survey/list/latest" component={SurveyList}/>
+				<Route path="survey/add" component={SurveyEdit}/>
+				<Route path="survey/edit/:surveyId" component={SurveyEdit}/>
 	    	</Route>
 	  	</Route>
 

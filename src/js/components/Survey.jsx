@@ -1,8 +1,9 @@
 import React from 'react';
 import Reflux from 'reflux';
 import props from '../config.js';
-
+import { ListGroup, ListGroupItem } from 'react-bootstrap';
 import PermissionHelper from '../util/PermissionHelper.js';
+var dateFormat = require('dateformat');
 
 import jquery from "jquery";
 var $ = jquery;
@@ -13,7 +14,7 @@ var Survey = React.createClass({
     return {
       id: this.props.survey.id || 0,
       name: this.props.survey.name || '',
-      options: [],
+      options: this.props.survey.surveyOptions || [],
       createDate: this.props.survey.createDate || '',
       modifiedDate: this.props.survey.modifiedDate || '',
       author: this.props.survey.user.foreName + ' ' + this.props.survey.user.name || '',
@@ -23,13 +24,17 @@ var Survey = React.createClass({
     };
   },
   render: function() {
+
   	  var marker = this.state.row % 2 == 0 ? "info" : "default";
+      var options = this.state.options;
       var actions = '';
       var editButton = '';
       var deleteButton = '';
+      var editLink = "#survey/edit/" + this.state.id;
+      var footer = this.state.author + " - created: "+ dateFormat(this.state.createDate, props.dateformatDefault) + " - modified: "+dateFormat(this.state.modifiedDate, props.dateformatDefault);       
 
       if(this.state.hasEditPermission) {
-        editButton = <MenuItem eventKey="1">Edit</MenuItem>;
+        editButton = <MenuItem eventKey="1" href={editLink}>Edit</MenuItem>;
       }
       if(this.state.hasDeletePermission) {
         deleteButton = <MenuItem eventKey="2">Delete</MenuItem>;
@@ -46,16 +51,23 @@ var Survey = React.createClass({
 
       return (
         <div className="survey">
-        	<Panel header={ this.state.name } bsStyle={marker}>
-     			
-          { console.log(this.props.survey)  }
+        	<Panel header={this.state.name} footer={footer} bsStyle={marker}>
+          
+          <ListGroup fill>
+            {options.map(function(option, index) {
+                   return (
+                      <ListGroupItem key={option.id}>
+                        <div className="surveyoption" key={option.key}>
+                          {index+1}. {option.name}
+                        </div>
+                      </ListGroupItem>
+                   )
+            }.bind(this))}
+          </ListGroup>
 	        	
-	        	Author: { this.state.author } - Create Date: { this.state.createDate } - Modified Date: { this.state.modifiedDate }
+	        {actions}
 
-            { actions }
-	        
         	</Panel>
-
         </div>
       );
   }

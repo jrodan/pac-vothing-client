@@ -60,7 +60,6 @@ var SurveyList = React.createClass({
 		  });
 	  
 	  },
-  
   render: function() {
 		var rows = [];
 		var surveys = this.state.surveys;

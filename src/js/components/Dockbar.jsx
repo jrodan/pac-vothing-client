@@ -35,13 +35,13 @@ var Dockbar = React.createClass({
 	      					<img style={{maxWidth : '50px'}} src="img/vothing-small.png"/>
 	      				</li>
 	      				<li>
-	      					<Link activeClassName="active" to="surveysall">Home</Link>
+	      					<Link activeClassName="active" to="survey/list">Home</Link>
 	      				</li>
 	      				<li>
-	      					<Link activeClassName="active" to="surveyslatest">Latest Surveys</Link>
+	      					<Link activeClassName="active" to="survey/list/latest">Latest Surveys</Link>
 	      				</li>
 	      				<li>
-	      					<Link activeClassName="active" to="surveyadd">Add Survey</Link>
+	      					<Link activeClassName="active" to="survey/add">Add Survey</Link>
 	      				</li>
 			        </ul>
 			        
