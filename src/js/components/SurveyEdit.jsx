@@ -1,12 +1,7 @@
 import React from 'react';
 import Reflux from 'reflux';
-
-import AuthStore from '../stores/AuthStore.js';
-import Actions from '../actions/Actions.js';
 import { Clearfix, Button, FormGroup, FormControl, Checkbox, ButtonToolbar, ControlLabel, Row, Col } from 'react-bootstrap';
-
 import props from '../config.js';
-
 import jquery from "jquery";
 var $ = jquery;
 
