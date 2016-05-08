@@ -6,5 +6,6 @@ node_modules/
 .DS_Store
 .classpath
 .project
-vothing-client.sublime-project
-vothing-client.sublime-workspace
+.
+.idea
+vothing-client.iml

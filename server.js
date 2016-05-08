@@ -9,4 +9,4 @@ app.use(serveStatic(directory));
 app.use(require('connect-livereload')());
 app.listen(port);
 
-console.log('Listening on port '+port+'.');
+console.log('Listening on port ' + port + '.');
