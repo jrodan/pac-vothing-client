@@ -25,11 +25,11 @@ var Survey = React.createClass({
 
         var marker = this.state.row % 2 == 0 ? "info" : "default";
         var options = this.state.options;
-        var actions = '';
+        var actions = null;
         var editButton = '';
         var deleteButton = '';
         var editLink = "#survey/edit/" + this.state.id;
-        var footer = this.state.author + " - created: " + dateFormat(this.state.createDate, props.dateformatDefault) + " - modified: " + dateFormat(this.state.modifiedDate, props.dateformatDefault);
+        var footer = this.state.author + " - created: " + dateFormat(this.state.createDate, props.dateformatDefault);
 
         if (this.state.hasEditPermission) {
             editButton = <MenuItem eventKey="1" href={editLink}>Edit</MenuItem>;
@@ -40,10 +40,12 @@ var Survey = React.createClass({
 
         if (this.state.hasEditPermission || this.state.hasDeletePermission) {
             actions = (
-                <DropdownButton bsStyle={marker} title='Actions' id={this.state.row}>
-                    {editButton}
-                    {deleteButton}
-                </DropdownButton>
+                <ListGroupItem>
+                    <DropdownButton bsStyle={marker} title='Actions' id={this.state.row}>
+                        {editButton}
+                        {deleteButton}
+                    </DropdownButton>
+                </ListGroupItem>
             );
         }
 
@@ -61,9 +63,10 @@ var Survey = React.createClass({
                                 </ListGroupItem>
                             )
                         }.bind(this))}
-                    </ListGroup>
+                        
+                        {actions}
 
-                    {actions}
+                    </ListGroup>
 
                 </Panel>
             </div>

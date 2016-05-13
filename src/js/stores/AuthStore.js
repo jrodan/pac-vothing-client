@@ -15,6 +15,7 @@ var AuthStore = Reflux.createStore({
 
         this.claims = this.parseJwt();
         this.error = false;
+        this.errorMessage = '';
         this.loading = false;
         this.user = null;
     },
@@ -24,7 +25,8 @@ var AuthStore = Reflux.createStore({
             loading: this.loading,
             error: this.error,
             user: this.userFromClaims(),
-            loggedIn: this.loggedIn()
+            loggedIn: this.loggedIn(),
+            errorMessage: this.errorMessage
         };
     },
 
@@ -53,8 +55,10 @@ var AuthStore = Reflux.createStore({
     },
 
     onLogin (email, password) {
+        
         this.loading = true;
         this.changed();
+        var caller = this;
 
         // validate email and password
         // TODO 
@@ -78,13 +82,21 @@ var AuthStore = Reflux.createStore({
         });
 
         loginRequest.fail(function (jqXHR, textStatus) {
-            console.log("fail -3 : " + jqXHR.status);
-            this.error = true;
-            //this.errormessage = "";
+            
+            caller.error = true;
+
             if (jqXHR.status == 401) {
-                // TODO 
-                console.log("permission denied");
+                caller.errorMessage = 'You are not allowed to sign in because of missing permissions.'
+            } else if (jqXHR.status == 0) {
+                caller.errorMessage = 'There is a general error with the Server. Please contact an Administrator.'
+            } else {
+                console.log("failed to connect: " + jqXHR.status);
+                caller.errorMessage = 'There is a general error with the Server. Please contact an Administrator.'
             }
+
+            caller.loading = false;
+            caller.changed();
+
         });
 
     },
@@ -95,11 +107,13 @@ var AuthStore = Reflux.createStore({
 
             this.jwt = authResponse.jwt;
             this.claims = this.parseJwt();
-            this.error = false;
             localStorage.setItem('jwt', this.jwt);
+            this.error = false;
+            this.errorMessage = '';
 
         } else {
-            this.error = 'Username or password invalid.';
+            this.error = true,
+            this.errorMessage = 'Username or password invalid.'
         }
 
         this.loading = false;
@@ -112,6 +126,7 @@ var AuthStore = Reflux.createStore({
         this.jwt = null;
         this.claims = null;
         this.error = false;
+        this.errorMessage = '';
         this.loading = false;
         localStorage.removeItem('jwt');
     },

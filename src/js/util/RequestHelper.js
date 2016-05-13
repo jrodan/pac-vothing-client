@@ -6,6 +6,32 @@ var $ = jquery;
 
 var RequestHelper = React.createClass({
     statics: {
+        convertResponseToSurvey: function(response) {
+            var survey = '';
+            var responseParsed = null;
+            try {
+                responseParsed = JSON.parse(response);
+            } catch(e) {
+                // TODO 
+            }
+            if (response && responseParsed) {
+                    survey = responseParsed;
+                }
+            return survey;
+        },
+        convertResponseToSurveys: function(response) {
+            var surveys = [];
+            var responseParsed = null;
+            try {
+                responseParsed = JSON.parse(response);
+            } catch(e) {
+                // TODO 
+            }
+            if (response && responseParsed) {
+                    surveys = responseParsed;
+                }
+            return surveys;
+        },
         getSurvey: function (caller, id) {
 
             var jwt = AuthStore.getJwt();
@@ -24,16 +50,15 @@ var RequestHelper = React.createClass({
                 dataType: "json"
             });
 
+            var localCaller = this;
+
             loadRequest.done(function (response, textStatus, jqXHR) {
-                var surveyResponse = JSON.parse(jqXHR.responseText);
-                if (surveyResponse) {
-                    caller.setSurvey(surveyResponse);
-                }
+                caller.setSurvey(localCaller.convertResponseToSurvey(jqXHR.responseText));
             });
 
             loadRequest.fail(function (jqXHR, textStatus) {
                 console.log("fail: " + jqXHR.status);
-                // TODO 
+                caller.setSurvey(localCaller.convertResponseToSurvey(jqXHR.responseText), "error"); // TODO 
                 //caller.error = true;
             });
 
@@ -62,16 +87,50 @@ var RequestHelper = React.createClass({
                 dataType: "json"
             });
 
+            var localCaller = this;
+
             loadRequest.done(function (response, textStatus, jqXHR) {
-                var surveysResponse = JSON.parse(jqXHR.responseText);
-                if (surveysResponse) {
-                    caller.setSurveys(surveysResponse);
-                }
+                caller.setSurveys(localCaller.convertResponseToSurveys(jqXHR.responseText));
             });
 
             loadRequest.fail(function (jqXHR, textStatus) {
                 console.log("fail: " + jqXHR.status);
                 //caller.error = true;
+                caller.setSurveys(localCaller.convertResponseToSurveys(jqXHR.responseText), "error"); // TODO 
+            });
+        },
+        updateSurvey: function (caller, submitData) {
+            var jwt = AuthStore.getJwt();
+
+            if (!jwt) {
+                return;
+            }
+
+            console.log("updateSurvey: "+JSON.stringify(submitData));
+
+            /* TODO check if submitData is set */
+
+            var loadRequest = $.ajax({
+                type: 'POST',
+                url: props.path.surveyedit,
+                contentType: "application/json",
+                beforeSend: function (request) {
+                    request.setRequestHeader("Vothing-Token", jwt);
+                },
+                data: JSON.stringify(submitData),
+                dataType: "json"
+            });
+
+            var localCaller = this;
+
+            loadRequest.done(function (response, textStatus, jqXHR) {
+                caller.setSurvey(localCaller.convertResponseToSurvey(jqXHR.responseText), "success"); // TODO 
+            });
+
+            loadRequest.fail(function (jqXHR, textStatus) {
+                console.log("fail: " + jqXHR.status);
+                //caller.error = true;
+                caller.setSurvey(localCaller.convertResponseToSurvey(jqXHR.responseText), "error"); // TODO 
             });
         }
     },

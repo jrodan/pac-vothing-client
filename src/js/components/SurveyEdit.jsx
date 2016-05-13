@@ -18,14 +18,15 @@ var SurveyEdit = React.createClass({
     loadSurvey: function () {
         RequestHelper.getSurvey(this, this.state.id);
     },
-    setSurvey: function (survey) {
+    setSurvey: function (survey, errorStatus) {
         if (survey) {
             this.setState({
                 survey: survey,
                 options: survey.surveyOptions,
                 name: survey.name,
                 id: survey.id,
-                editMode: true
+                editMode: true,
+                errorStatus: errorStatus
             });
         }
     },
@@ -41,21 +42,32 @@ var SurveyEdit = React.createClass({
         this.setState({options: options});
     },
     handleSubmit: function (e) {
-        /*e.preventDefault();
-         var name = this.state.author.trim();
-         var text = this.state.text.trim();
-         if (!text || !author) {
-         return;
-         }
-         // TODO: send request to the server
-         this.setState({author: '', text: ''});
-         */
+        e.preventDefault();
+        var name = this.state.name.trim();
+        if (!name) {
+            return;
+        }
+        var requestData = {
+            id: this.state.id,
+            name: name,
+            surveyOptions: this.state.options
+        }
+        RequestHelper.updateSurvey(this, requestData);
+        // TODO: send request to the server
+        //this.setState({author: '', text: ''});
     },
     addOption: function (event) {
         var nameSurvey = this.state.name;
         var key = this.state.optionsKeys++;
         var options = this.state.options;
-        options.push({name: null, key: key});
+        options.push({
+            id: 0,
+            name: null, 
+            createDate: "1462648006000",
+            modifiedDate: "1462648006000",
+            userPermissions: [],
+            surveyOptionRatings: []
+        });
         this.setState({
             name: nameSurvey,
             options: options
@@ -89,9 +101,10 @@ var SurveyEdit = React.createClass({
                     <FormGroup controlId="formControlsOptions" className="surveyoptions">
 
                         {options.map(function (option, index) {
+                            var key = (option.id != null && option.id != 0) ? option.id : index;
                             var ref = "input_" + index;
                             return (
-                                <div className="surveyoption" key={option.id}>
+                                <div className="surveyoption" key={key}>
                                     <Col xs={9} md={9} className="col">
                                         <FormControl type="text" name={ref} value={option.name}
                                                      onChange={this.handleOptionChange} ref={ref}
@@ -109,7 +122,7 @@ var SurveyEdit = React.createClass({
                     </FormGroup>
 
                     <FormGroup controlId="formControlsOptionsAdd" className="submitform">
-                        <Button type="submit">Submit</Button>
+                        <Button type="submit" onClick={this.handleSubmit}>Submit</Button>
                     </FormGroup>
 
                 </form>

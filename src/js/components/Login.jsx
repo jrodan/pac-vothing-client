@@ -14,6 +14,7 @@ var Login = React.createClass({
         this.listenTo(AuthStore, this._onAuthChange);
     },
     _onAuthChange(auth) {
+        console.log("something changed in the store component");
         this.setState(auth);
     },
     _handleSubmit(event) {
@@ -25,11 +26,11 @@ var Login = React.createClass({
         );
     },
     render() {
-        var errorMessage;
+        var errorMessage = '';
         if (this.state.error) {
             errorMessage = (
-                <div className='state-error' style={{ paddingBottom: 16 }}>
-                    { this.state.error }
+                <div className='state-error' style={{ paddingBottom: 16, backgroundColor: "lightred" }}>
+                    { this.state.errorMessage }
                 </div>
             );
         }
@@ -38,9 +39,12 @@ var Login = React.createClass({
         if (!this.state.user) {
             formContent = (
                 <div className="loginform">
-                    { errorMessage }
+                    
                     <fieldset className="loginlogo">
                         <Image src="/img/vothing-large.png" rounded responsive/>
+                    </fieldset>
+                    <fieldset className="error">
+                        { errorMessage }
                     </fieldset>
                     <fieldset className="form-group">
                         <label for="exampleInputEmail1">Email address</label>
