@@ -44,7 +44,8 @@
     "extract-text-webpack-plugin": "latest",
     "jsx-loader": "latest",
     "scssify": "latest",
-    "style-loader": "latest"
+    "style-loader": "latest",
+    "watch": "^0.18.0"
   },
   "scripts": {
     "build": "./build.js"

@@ -8,7 +8,7 @@ var SurveyEdit = React.createClass({
             name: '',
             options: [],
             optionsKeys: 100,
-            id: this.props.params.surveyId,
+            id: this.props.params.surveyId || 0,
             editMode: (this.props.params.surveyId && this.props.params.surveyId > 0 ? true : false)
         };
     },
@@ -52,7 +52,11 @@ var SurveyEdit = React.createClass({
             name: name,
             surveyOptions: this.state.options
         }
-        RequestHelper.updateSurvey(this, requestData);
+        if(!this.state.id || this.state.id == 0) {
+            RequestHelper.addSurvey(this, requestData);
+        } else {
+            RequestHelper.updateSurvey(this, requestData);
+        }
         // TODO: send request to the server
         //this.setState({author: '', text: ''});
     },
@@ -66,7 +70,8 @@ var SurveyEdit = React.createClass({
             createDate: "1462648006000",
             modifiedDate: "1462648006000",
             userPermissions: [],
-            surveyOptionRatings: []
+            surveyOptionRatings: [],
+            objectKey: parseInt(Math.random()*100000, 10)
         });
         this.setState({
             name: nameSurvey,

@@ -99,7 +99,13 @@ var RequestHelper = React.createClass({
                 caller.setSurveys(localCaller.convertResponseToSurveys(jqXHR.responseText), "error"); // TODO 
             });
         },
+        addSurvey: function (caller, submitData) {
+            this.updateSurvey(caller, submitData, true);    
+        },
         updateSurvey: function (caller, submitData) {
+            this.updateSurvey(caller, submitData, false);    
+        },
+        updateSurvey: function (caller, submitData, addMode) {
             var jwt = AuthStore.getJwt();
 
             if (!jwt) {
@@ -108,11 +114,17 @@ var RequestHelper = React.createClass({
 
             console.log("updateSurvey: "+JSON.stringify(submitData));
 
+            var url = props.path.surveyedit;
+
+            if(addMode) {
+                url = props.path.surveyadd;
+            }
+
             /* TODO check if submitData is set */
 
             var loadRequest = $.ajax({
                 type: 'POST',
-                url: props.path.surveyedit,
+                url: url,
                 contentType: "application/json",
                 beforeSend: function (request) {
                     request.setRequestHeader("Vothing-Token", jwt);
