@@ -19,6 +19,7 @@
 - create tests (mockito)
 - implement web tracking
 - configure npm watch for faster development
+- CI
 - cleanup
 - documentation
 

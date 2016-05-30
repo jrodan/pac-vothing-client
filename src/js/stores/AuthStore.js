@@ -76,14 +76,15 @@ var AuthStore = Reflux.createStore({
             dataType: "json"
         });
 
-        loginRequest.done(function (response, textStatus, jqXHR) {
-            console.log("done -2: " + response);
+        loginRequest.done(function (response, textStatus, jqXHR) {;
             Actions.login.completed(response);
         });
 
         loginRequest.fail(function (jqXHR, textStatus) {
             
             caller.error = true;
+
+            console.log("error: " + textStatus + " " + jqXHR);        
 
             if (jqXHR.status == 401) {
                 caller.errorMessage = 'You are not allowed to sign in because of missing permissions.'

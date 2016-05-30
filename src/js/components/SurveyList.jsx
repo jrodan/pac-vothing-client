@@ -7,7 +7,8 @@ var $ = jquery;
 var SurveyList = React.createClass({
     getInitialState: function () {
         return {
-            surveys: {}
+            surveys: {},
+            error: ""
         };
     },
     componentDidMount: function () {
@@ -16,22 +17,30 @@ var SurveyList = React.createClass({
     loadSurveys: function (task, submitData) {
         RequestHelper.getSurveys(this, task, submitData);
     },
-    setSurveys: function (surveys) {
-        if (surveys) {
-            this.setState({
-                surveys: surveys
-            });
-        }
+    setSurveys: function (surveys, error) {
+        this.setState({
+            surveys: surveys,
+            error: error
+        });
     },
     render: function () {
         var rows = [];
         var surveys = this.state.surveys;
+        var errorMessage = '';
+        if (this.state.error) {
+            errorMessage = (
+                <div className='alert alert-danger' style={{ paddingBottom: 16, backgroundColor: "lightred" }}>
+                    { this.state.error }
+                </div>
+            );
+        }
 
         for (var i = 0; i < surveys.length; i++) {
             rows.push(<Survey survey={surveys[i]} key={surveys[i].id} row={i}/>);
         }
         return (
             <div className="surveys">
+                { errorMessage }
                 <div>{rows}</div>
             </div>
         );

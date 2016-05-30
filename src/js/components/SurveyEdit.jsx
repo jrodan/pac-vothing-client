@@ -13,12 +13,29 @@ var SurveyEdit = React.createClass({
         };
     },
     componentDidMount: function () {
+        // load survey
         this.loadSurvey();
+    },
+    componentWillUpdate: function() {
+        // remove old information
+        var editMode = (this.props.params.surveyId && this.props.params.surveyId > 0 ? true : false)
+        if(!editMode && this.state.editMode) {
+            this.setState({
+                survey: "",
+                options: [],
+                name: "",
+                id: 0,
+                editMode: editMode,
+                error: "",
+                success: ""
+            });
+        }
     },
     loadSurvey: function () {
         RequestHelper.getSurvey(this, this.state.id);
     },
-    setSurvey: function (survey, errorStatus) {
+    setSurvey: function (survey, error, success) {
+        // TODO use reflux for this callback
         if (survey) {
             this.setState({
                 survey: survey,
@@ -26,9 +43,10 @@ var SurveyEdit = React.createClass({
                 name: survey.name,
                 id: survey.id,
                 editMode: true,
-                errorStatus: errorStatus
+                error: error,
+                success: success
             });
-        }
+        } 
     },
     handleNameChange: function (e) {
         this.setState({name: e.target.value});
@@ -86,8 +104,6 @@ var SurveyEdit = React.createClass({
     },
     render: function () {
         var options = this.state.options;
-
-        console.log(this.state.survey);
 
         return (
             <div className="surveyedit">

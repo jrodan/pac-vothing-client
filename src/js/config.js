@@ -8,7 +8,7 @@ var props = {
         login: serverBase + "/vothing-core/vothing/security/login",
         logout: serverBase + "/vothing-core/vothing/security/logout",
         surveylist: serverBase + "/vothing-core/restricted/survey/list",
-        surveylist: serverBase + "/vothing-core/restricted/survey/list",
+        surveydelete: serverBase + "/vothing-core/restricted/survey/delete",
         surveyadd: serverBase + "/vothing-core/restricted/survey/add",
         surveyedit: serverBase + "/vothing-core/restricted/survey/update",
         surveylist: serverBase + "/vothing-core/restricted/survey/list",

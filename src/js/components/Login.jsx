@@ -29,9 +29,11 @@ var Login = React.createClass({
         var errorMessage = '';
         if (this.state.error) {
             errorMessage = (
-                <div className='state-error' style={{ paddingBottom: 16, backgroundColor: "lightred" }}>
-                    { this.state.errorMessage }
-                </div>
+                <fieldset className="">
+                    <div className='alert alert-danger' style={{ paddingBottom: 16, backgroundColor: "lightred" }}>
+                        { this.state.errorMessage }
+                    </div>
+                </fieldset>
             );
         }
 
@@ -43,9 +45,7 @@ var Login = React.createClass({
                     <fieldset className="loginlogo">
                         <Image src="/img/vothing-large.png" rounded responsive/>
                     </fieldset>
-                    <fieldset className="error">
-                        { errorMessage }
-                    </fieldset>
+                    { errorMessage }
                     <fieldset className="form-group">
                         <label for="exampleInputEmail1">Email address</label>
                         <input type="email" className="form-control" id="exampleInputEmail1" placeholder="Enter email"

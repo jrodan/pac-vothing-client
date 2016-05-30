@@ -30,7 +30,8 @@
     "connect": "latest",
     "serve-static": "latest",
     "connect-livereload": "latest",
-    "reactify": "latest"
+    "reactify": "latest",
+    "sass":"latest"
   },
   "devDependencies": {
     "browserify": "latest",

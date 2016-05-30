@@ -29,13 +29,14 @@ var Survey = React.createClass({
         var editButton = '';
         var deleteButton = '';
         var editLink = "#survey/edit/" + this.state.id;
+        var deleteLink = "#survey/delete/" + this.state.id;
         var footer = this.state.author + " - created: " + dateFormat(this.state.createDate, props.dateformatDefault);
 
         if (this.state.hasEditPermission) {
             editButton = <MenuItem eventKey="1" href={editLink}>Edit</MenuItem>;
         }
         if (this.state.hasDeletePermission) {
-            deleteButton = <MenuItem eventKey="2">Delete</MenuItem>;
+            deleteButton = <MenuItem eventKey="2" href={deleteLink}>Delete</MenuItem>;
         }
 
         if (this.state.hasEditPermission || this.state.hasDeletePermission) {

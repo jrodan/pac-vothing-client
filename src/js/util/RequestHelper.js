@@ -2,6 +2,7 @@ import React from 'react';
 import props from '../config.js';
 import AuthStore from '../stores/AuthStore.js';
 import jquery from "jquery";
+import Router from "react-router";
 var $ = jquery;
 
 var RequestHelper = React.createClass({
@@ -58,7 +59,11 @@ var RequestHelper = React.createClass({
 
             loadRequest.fail(function (jqXHR, textStatus) {
                 console.log("fail: " + jqXHR.status);
-                caller.setSurvey(localCaller.convertResponseToSurvey(jqXHR.responseText), "error"); // TODO 
+                var error = "There is a general error with the Server. Please contact an Administrator.";
+                if(jqXHR.status == 403) {
+                    error = "You have no permission to access the Survey List. Please contact an Administrator.";
+                }
+                caller.setSurvey(localCaller.convertResponseToSurvey(jqXHR.responseText), error); // TODO 
                 //caller.error = true;
             });
 
@@ -88,15 +93,19 @@ var RequestHelper = React.createClass({
             });
 
             var localCaller = this;
-
+ 
             loadRequest.done(function (response, textStatus, jqXHR) {
                 caller.setSurveys(localCaller.convertResponseToSurveys(jqXHR.responseText));
             });
 
             loadRequest.fail(function (jqXHR, textStatus) {
                 console.log("fail: " + jqXHR.status);
+                var error = "There is a general error with the Server. Please contact an Administrator.";
+                if(jqXHR.status == 403) {
+                    error = "You have no permission to access the Survey List. Please contact an Administrator.";
+                }
+                caller.setSurveys(localCaller.convertResponseToSurveys(jqXHR.responseText), error); // TODO 
                 //caller.error = true;
-                caller.setSurveys(localCaller.convertResponseToSurveys(jqXHR.responseText), "error"); // TODO 
             });
         },
         addSurvey: function (caller, submitData) {
@@ -104,6 +113,43 @@ var RequestHelper = React.createClass({
         },
         updateSurvey: function (caller, submitData) {
             this.updateSurvey(caller, submitData, false);    
+        },
+        deleteSurvey: function (caller, surveyId) {
+            var jwt = AuthStore.getJwt();
+
+            if (!jwt) {
+                return;
+            }
+
+            var url = props.path.surveydelete;
+
+            /* TODO check if submitData is set */
+
+            var loadRequest = $.ajax({
+                type: 'GET',
+                url: url + "/"+surveyId,
+                contentType: "application/json",
+                beforeSend: function (request) {
+                    request.setRequestHeader("Vothing-Token", jwt);
+                },
+                dataType: "json"
+            });
+
+            var localCaller = this;
+
+            loadRequest.done(function (response, textStatus, jqXHR) {
+                //caller.setSurvey(null, "", "Survey was successfully deleted."); // TODO 
+                // Router.push("#/survey/add"); // TODO pass state
+                caller.setDeleteResult(null, true);
+            });
+
+            loadRequest.fail(function (jqXHR, textStatus) {
+                //console.log("fail: " + jqXHR.status);
+                //caller.error = true;
+                //caller.setSurvey(null, "Survey with surveyId "+surveyId+" could not be deleted."); // TODO 
+                caller.setDeleteResult(surveyId, false);
+            });
+            //this.updateSurvey(caller, submitData, true);    
         },
         updateSurvey: function (caller, submitData, addMode) {
             var jwt = AuthStore.getJwt();
