@@ -2,6 +2,7 @@ import React from "react";
 import props from "../config.js";
 import {ListGroup, ListGroupItem, Panel, DropdownButton, MenuItem} from "react-bootstrap";
 import PermissionHelper from "../util/PermissionHelper.js";
+import RequestHelper from "../util/RequestHelper.js";
 import jquery from "jquery";
 var dateFormat = require('dateformat');
 
@@ -18,8 +19,17 @@ var Survey = React.createClass({
             author: this.props.survey.user.foreName + ' ' + this.props.survey.user.name || '',
             row: this.props.row || 0,
             hasEditPermission: PermissionHelper.hasUserEditSurveyPermission(this.props.survey),
-            hasDeletePermission: PermissionHelper.hasUserDeleteSurveyPermission(this.props.survey)
+            hasDeletePermission: PermissionHelper.hasUserDeleteSurveyPermission(this.props.survey),
+            isUserVoted: this.props.survey.userVoted
         };
+    },
+    vote: function(e) {
+        var isUserVoted = this.state.userVoted;
+        if(!isUserVoted) {
+            var surveyId = this.state.id;
+            var optionId = e.target.id;
+            RequestHelper.addSurveyOptionVote(this, surveyId, optionId);
+        }
     },
     render: function () {
 
@@ -31,6 +41,13 @@ var Survey = React.createClass({
         var editLink = "#survey/edit/" + this.state.id;
         var deleteLink = "#survey/delete/" + this.state.id;
         var footer = this.state.author + " - created: " + dateFormat(this.state.createDate, props.dateformatDefault);
+        var isUserVoted = this.state.userVoted;
+        var voteLink = "";
+        var votedMarker = "disabled";
+        if(!isUserVoted) {
+            voteLink = "javascript:this.vote();";
+            votedMarker = "";
+        }
 
         if (this.state.hasEditPermission) {
             editButton = <MenuItem eventKey="1" href={editLink}>Edit</MenuItem>;
@@ -57,7 +74,7 @@ var Survey = React.createClass({
                     <ListGroup fill>
                         {options.map(function (option, index) {
                             return (
-                                <ListGroupItem key={option.id}>
+                                <ListGroupItem onClick={this.vote} key={option.id}>
                                     <div className="surveyoption" key={option.key}>
                                         {index + 1}. {option.name}
                                     </div>

@@ -7,7 +7,7 @@ import Actions from "../actions/Actions.js";
 
 var Login = React.createClass({
     mixins: [
-        Reflux.connect(AuthStore, Actions),
+        Reflux.connect(AuthStore, Actions), 
         Reflux.ListenerMixin
     ],
     componentDidMount () {

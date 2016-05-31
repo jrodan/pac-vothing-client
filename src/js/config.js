@@ -12,7 +12,8 @@ var props = {
         surveyadd: serverBase + "/vothing-core/restricted/survey/add",
         surveyedit: serverBase + "/vothing-core/restricted/survey/update",
         surveylist: serverBase + "/vothing-core/restricted/survey/list",
-        surveyget: serverBase + "/vothing-core/restricted/survey/get"
+        surveyget: serverBase + "/vothing-core/restricted/survey/get",
+        surveyoptionvoteadd: serverBase + "/vothing-core/restricted/surveyoptionrating/add"
     },
     user: {
         defaultemail: "default@vothing.com",
