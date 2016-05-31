@@ -6,7 +6,9 @@ var SurveyDelete = React.createClass({
     getInitialState: function () {
         return {
             id: this.props.params.surveyId || 0,
-            deleted: (this.props.params.deleted == "deleted" ? true : false)
+            deleted: (this.props.params.deleted == "deleted" ? true : false),
+            deleteMessage: "",
+            errorMessage: ""
         };
     },
     componentDidMount: function () {
@@ -22,6 +24,18 @@ var SurveyDelete = React.createClass({
             deleted: deleted
         });
     },
+    // onDelete: function(message) {
+    //     this.setState({
+    //         deleteMessage: message,
+    //         errorMessage: ""
+    //     });
+    // },
+    // onError: function(message) {
+    //     this.setState({
+    //         deleteMessage: "",
+    //         errorMessage: message
+    //     });
+    // },
     render: function () {
         var messageClass = "alert-danger";
         var message = "Could not delete Survey due to an problem";

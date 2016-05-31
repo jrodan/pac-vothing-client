@@ -2,10 +2,17 @@ import React from 'react';
 import props from '../config.js';
 import AuthStore from '../stores/AuthStore.js';
 import jquery from "jquery";
-import Router from "react-router";
+// import Router from "react-router";
+// import SurveyStore from "../stores/SurveyStore.js";
+// import Actions from '../actions/Actions';
+// import Reflux from 'reflux';
 var $ = jquery;
 
 var RequestHelper = React.createClass({
+    // mixins: [
+    //     Reflux.connect(SurveyStore, Actions),
+    //     Reflux.ListenerMixin
+    // ],
     statics: {
         convertResponseToSurvey: function(response) {
             var survey = '';
@@ -93,7 +100,7 @@ var RequestHelper = React.createClass({
             });
 
             var localCaller = this;
- 
+
             loadRequest.done(function (response, textStatus, jqXHR) {
                 caller.setSurveys(localCaller.convertResponseToSurveys(jqXHR.responseText));
             });
@@ -150,6 +157,40 @@ var RequestHelper = React.createClass({
                 caller.setDeleteResult(surveyId, false);
             });
             //this.updateSurvey(caller, submitData, true);    
+        },
+        addSurveyOptionVote: function (caller, surveyOptionId) {
+            var jwt = AuthStore.getJwt();
+
+            if (!jwt) {
+                return;
+            }
+
+            var url = props.path.surveyoptionvoteadd;
+
+            /* TODO check if submitData is set */
+
+            // TODO 
+            // Actions.surveyOptionAdded();
+            // Actions.surveyOptionAdded.completed();
+
+            var loadRequest = $.ajax({
+                type: 'PUT',
+                url: url + "/" + surveyOptionId,
+                contentType: "application/json",
+                beforeSend: function (request) {
+                    request.setRequestHeader("Vothing-Token", jwt);
+                },
+                dataType: "json"
+            });
+
+            // TODO call reflux action and not caller method
+            loadRequest.done(function (response, textStatus, jqXHR) {
+                caller.onVoted("Vote was successfully counted");
+            });
+
+            loadRequest.fail(function (jqXHR, textStatus) {
+                caller.onError("Vote could not be counted due to an internal Server Problem.");
+            });
         },
         updateSurvey: function (caller, submitData, addMode) {
             var jwt = AuthStore.getJwt();

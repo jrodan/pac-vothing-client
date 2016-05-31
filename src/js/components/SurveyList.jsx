@@ -2,9 +2,17 @@ import React from "react";
 import jquery from "jquery";
 import RequestHelper from "../util/RequestHelper.js";
 import Survey from "./Survey.jsx";
+import Reflux from 'reflux';
+// import SurveyStore from "../stores/SurveyStore.js";
+import Actions from '../actions/Actions';
 var $ = jquery;
 
 var SurveyList = React.createClass({
+    // mixins: [
+    //     Reflux.connect(SurveyStore, Actions.surveyListUpdated),
+    //     Reflux.connect(SurveyStore, Actions.surveyOptionAdded), 
+    //     Reflux.ListenerMixin
+    // ],
     getInitialState: function () {
         return {
             surveys: {},
@@ -12,9 +20,13 @@ var SurveyList = React.createClass({
         };
     },
     componentDidMount: function () {
+        // console.log("componentDidMount was triggered");
+        // this.listenTo(SurveyStore, this.loadSurveys);
+        // Actions.surveyListUpdated();
         this.loadSurveys();
     },
     loadSurveys: function (task, submitData) {
+        // console.log("loadSurveys was triggered");
         RequestHelper.getSurveys(this, task, submitData);
     },
     setSurveys: function (surveys, error) {

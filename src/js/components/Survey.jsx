@@ -20,16 +20,32 @@ var Survey = React.createClass({
             row: this.props.row || 0,
             hasEditPermission: PermissionHelper.hasUserEditSurveyPermission(this.props.survey),
             hasDeletePermission: PermissionHelper.hasUserDeleteSurveyPermission(this.props.survey),
-            isUserVoted: this.props.survey.userVoted
+            isUserVoted: this.props.survey.userVoted,
+            error: false,
+            success: false
         };
     },
     vote: function(e) {
-        var isUserVoted = this.state.userVoted;
+        var isUserVoted = this.props.survey.isUserVoted; // TODO change this to state
         if(!isUserVoted) {
-            var surveyId = this.state.id;
             var optionId = e.target.id;
-            RequestHelper.addSurveyOptionVote(this, surveyId, optionId);
+            RequestHelper.addSurveyOptionVote(this, optionId);
         }
+    },
+    onVoted: function(message) {
+        this.setState({
+            isUserVoted: true,
+            success: true,
+            error: false,
+            successMessage: message
+        });
+    },
+    onError: function(message) {
+        this.setState({
+            success: false,
+            error: true,
+            errorMessage: message
+        });
     },
     render: function () {
 
@@ -44,6 +60,28 @@ var Survey = React.createClass({
         var isUserVoted = this.state.userVoted;
         var voteLink = "";
         var votedMarker = "disabled";
+
+        var error = this.state.error;
+        var errorMessage = ""; //this.state.errorMessage;
+        var success = this.state.success;
+        var successMessage = ""; //this.state.successMessage;
+
+        if(error) {
+            errorMessage = (
+                <div className='alert alert-danger'>
+                    { this.state.errorMessage }
+                </div>
+            );
+        }
+
+        if(success) {
+            successMessage = (
+                <div className='alert alert-success'>
+                    { this.state.successMessage }
+                </div>
+            );
+        }
+
         if(!isUserVoted) {
             voteLink = "javascript:this.vote();";
             votedMarker = "";
@@ -69,13 +107,17 @@ var Survey = React.createClass({
 
         return (
             <div className="survey">
+
+                {errorMessage}
+                {successMessage}
+
                 <Panel header={this.state.name} footer={footer} bsStyle={marker}>
 
                     <ListGroup fill>
                         {options.map(function (option, index) {
                             return (
-                                <ListGroupItem onClick={this.vote} key={option.id}>
-                                    <div className="surveyoption" key={option.key}>
+                                <ListGroupItem onClick={this.vote} key={index} id={option.id}>
+                                    <div className="surveyoption" key={option.key} id={option.id}>
                                         {index + 1}. {option.name}
                                     </div>
                                 </ListGroupItem>
