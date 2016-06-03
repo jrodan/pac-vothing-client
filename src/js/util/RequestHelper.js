@@ -173,8 +173,10 @@ var RequestHelper = React.createClass({
             // Actions.surveyOptionAdded();
             // Actions.surveyOptionAdded.completed();
 
+            var localCaller = this;
+
             var loadRequest = $.ajax({
-                type: 'PUT',
+                type: 'GET',
                 url: url + "/" + surveyOptionId,
                 contentType: "application/json",
                 beforeSend: function (request) {
@@ -185,11 +187,11 @@ var RequestHelper = React.createClass({
 
             // TODO call reflux action and not caller method
             loadRequest.done(function (response, textStatus, jqXHR) {
-                caller.onVoted("Vote was successfully counted");
+                caller.setSurvey(localCaller.convertResponseToSurvey(jqXHR.responseText), "Vote was successfully counted", ""); // TODO 
             });
 
             loadRequest.fail(function (jqXHR, textStatus) {
-                caller.onError("Vote could not be counted due to an internal Server Problem.");
+                caller.setSurvey(localCaller.convertResponseToSurvey(jqXHR.responseText), "", "Vote could not be counted due to an internal Server Problem."); // TODO 
             });
         },
         updateSurvey: function (caller, submitData, addMode) {
