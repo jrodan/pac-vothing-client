@@ -39,7 +39,7 @@ var SurveyEdit = React.createClass({
         if (survey) {
             this.setState({
                 survey: survey,
-                options: survey.surveyOptions,
+                options: survey.surveyOptionsRemote,
                 name: survey.name,
                 id: survey.id,
                 editMode: true,

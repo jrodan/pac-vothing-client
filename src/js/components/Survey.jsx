@@ -3,6 +3,7 @@ import props from "../config.js";
 import {ListGroup, ListGroupItem, Panel, DropdownButton, MenuItem} from "react-bootstrap";
 import PermissionHelper from "../util/PermissionHelper.js";
 import RequestHelper from "../util/RequestHelper.js";
+import SurveyOption from "./SurveyOption.jsx";
 import jquery from "jquery";
 var dateFormat = require('dateformat');
 
@@ -19,10 +20,22 @@ var Survey = React.createClass({
             success: false
         };
     },
+    componentDidMount: function() {
+        this.loadSurvey();
+    },
+    loadSurvey: function(){
+        RequestHelper.getSurvey(this,this.state.survey.id);
+    },
     setSurvey: function(survey, successMessage, errorMessage) {
 
-        var success = successMessage || successMessage != "" ? true : false;
-        var error = errorMessage || errorMessage != "" ? true : false;
+        var success = false;
+        if(successMessage) {
+            success = true;
+        }
+        var error = false;
+        if(errorMessage) {
+            error = true;
+        }
 
         this.setState({
             survey: survey,
@@ -35,31 +48,22 @@ var Survey = React.createClass({
             errorMessage: errorMessage
         });
     },
-    vote: function(e) {
-        var userVoted = this.state.survey.userVoted; // TODO change this to state
-        if(!userVoted) {
-            var optionId = e.target.id;
-            RequestHelper.addSurveyOptionVote(this, optionId);
-        }
-    },
     render: function () {
 
         var marker = this.state.row % 2 == 0 ? "info" : "default";
-        var options = this.state.survey.surveyOptions;
+        var options = this.state.survey.surveyOptionsRemote;
         var actions = null;
         var editButton = '';
         var deleteButton = '';
         var editLink = "#survey/edit/" + this.state.survey.id;
         var deleteLink = "#survey/delete/" + this.state.survey.id;
-        var footer = this.state.author + " - created: " + dateFormat(this.state.survey.createDate, props.dateformatDefault);
+        var footer = this.state.survey.user.foreName + " " + this.state.survey.user.name + " - created: " + dateFormat(this.state.survey.createDate, props.dateformatDefault);
         var userVoted = this.state.survey.userVoted;
-        var voteLink = "";
-        var votedMarker = "disabled";
-
+        var votes = this.state.survey.votes;
         var error = this.state.error;
-        var errorMessage = ""; //this.state.errorMessage;
+        var errorMessage = ""; 
         var success = this.state.success;
-        var successMessage = ""; //this.state.successMessage;
+        var successMessage = ""; 
 
         if(error) {
             errorMessage = (
@@ -75,11 +79,6 @@ var Survey = React.createClass({
                     { this.state.successMessage }
                 </div>
             );
-        }
-
-        if(!userVoted) {
-            voteLink = "javascript:this.vote();";
-            votedMarker = "";
         }
 
         if (this.state.hasEditPermission) {
@@ -111,11 +110,7 @@ var Survey = React.createClass({
                     <ListGroup fill>
                         {options.map(function (option, index) {
                             return (
-                                <ListGroupItem onClick={this.vote} key={index} id={option.id} disabled={votedMarker}>
-                                    <div className="surveyoption" key={option.key} id={option.id}>
-                                        {index + 1}. {option.name}
-                                    </div>
-                                </ListGroupItem>
+                                <SurveyOption surveyOption={option} key={option.id} index={index} survey={this.state.survey} parent={this}/>
                             )
                         }.bind(this))}
                         

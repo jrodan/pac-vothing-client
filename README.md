@@ -7,7 +7,6 @@
 ## Testing
 
 # TODO
-- add voting function
 - use npm config module for application configurations
 - fix npm module versions
 - add / edit survey validation
@@ -21,11 +20,13 @@
 - CI
 - cleanup
 - documentation
+- reimplementation of model level - how to improve handling of JSON entities from the backend?
 
 # Resolved Tasks
 - show survey list
 - add survey (just a bugfix is still open)
 - check and get permissions for edit / delete actions 
+- add voting function
 
 
 

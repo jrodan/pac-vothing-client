@@ -48,7 +48,7 @@ var SurveyList = React.createClass({
         }
 
         for (var i = 0; i < surveys.length; i++) {
-            rows.push(<Survey survey={surveys[i]} key={surveys[i].id} row={i}/>);
+            rows.push(<Survey survey={surveys[i]} key={surveys[i].id} row={i} />);
         }
         return (
             <div className="surveys">
