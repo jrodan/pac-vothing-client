@@ -9,3 +9,5 @@ node_modules/
 .
 .idea
 vothing-client.iml
+src/css/bootstrap-responsive.css
+src/css/bootstrap.min.css
