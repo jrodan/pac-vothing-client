@@ -133,7 +133,7 @@ var RequestHelper = React.createClass({
             /* TODO check if submitData is set */
 
             var loadRequest = $.ajax({
-                type: 'GET',
+                type: 'PUT',
                 url: url + "/"+surveyId,
                 contentType: "application/json",
                 beforeSend: function (request) {

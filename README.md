@@ -1,4 +1,4 @@
-# pac-vothing-client
+# PAC VoThing Client
 
 ## Setup
 
