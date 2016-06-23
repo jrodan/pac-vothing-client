@@ -5,15 +5,15 @@ var props = {
         base: serverBase
     },
     path: {
-        login: serverBase + "/vothing-core/vothing/security/login",
-        logout: serverBase + "/vothing-core/vothing/security/logout",
-        surveylist: serverBase + "/vothing-core/restricted/survey/list",
-        surveydelete: serverBase + "/vothing-core/restricted/survey/delete",
-        surveyadd: serverBase + "/vothing-core/restricted/survey/add",
-        surveyedit: serverBase + "/vothing-core/restricted/survey/update",
-        surveylist: serverBase + "/vothing-core/restricted/survey/list",
-        surveyget: serverBase + "/vothing-core/restricted/survey/get",
-        surveyoptionvoteadd: serverBase + "/vothing-core/restricted/surveyoptionrating/add"
+        login: serverBase + "/vothing-remote/vothing/security/login",
+        logout: serverBase + "/vothing-remote/vothing/security/logout",
+        surveylist: serverBase + "/vothing-remote/restricted/survey/list",
+        surveydelete: serverBase + "/vothing-remote/restricted/survey/delete",
+        surveyadd: serverBase + "/vothing-remote/restricted/survey/add",
+        surveyedit: serverBase + "/vothing-remote/restricted/survey/update",
+        surveylist: serverBase + "/vothing-remote/restricted/survey/list",
+        surveyget: serverBase + "/vothing-remote/restricted/survey/get",
+        surveyoptionvoteadd: serverBase + "/vothing-remote/restricted/surveyoptionrating/add"
     },
     user: {
         defaultemail: "default@vothing.com",
