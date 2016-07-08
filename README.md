@@ -7,6 +7,7 @@
 - run `npm start` to start the local development server
 
 # TODO 1.0.0
+- [ ] integrate client in the core assembly project
 - [ ] use npm config module for application configurations
 - [ ] add / edit survey validation
 - [ ] error messages 
