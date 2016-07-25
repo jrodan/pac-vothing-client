@@ -225,13 +225,13 @@ var RequestHelper = React.createClass({
             var localCaller = this;
 
             loadRequest.done(function (response, textStatus, jqXHR) {
-                caller.setSurvey(localCaller.convertResponseToSurvey(jqXHR.responseText), "success"); // TODO 
+                caller.setSurvey(localCaller.convertResponseToSurvey(jqXHR.responseText), "Successfully saved", ""); // TODO 
             });
 
             loadRequest.fail(function (jqXHR, textStatus) {
                 console.log("fail: " + jqXHR.status);
                 //caller.error = true;
-                caller.setSurvey(localCaller.convertResponseToSurvey(jqXHR.responseText), "error"); // TODO 
+                caller.setSurvey(localCaller.convertResponseToSurvey(jqXHR.responseText), "", "An error occured during save action"); // TODO 
             });
         }
     },

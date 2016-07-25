@@ -37,14 +37,14 @@ var SurveyDelete = React.createClass({
     //     });
     // },
     render: function () {
-        var messageClass = "alert-danger";
+        var messageClass = 'alert alert-danger';
         var message = "Could not delete Survey due to an problem";
         if(this.state.deleted) {
-            messageClass="alert-success";
+            messageClass="alert alert-success";
             message = "Successfully deleted Survey.";
         }
         return (
-            <div className="SurveyDelete {messageClass}">
+        <div className={"SurveyDelete " + messageClass}>
                 {message}
             </div>
         );

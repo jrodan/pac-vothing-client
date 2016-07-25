@@ -34,9 +34,19 @@ var SurveyEdit = React.createClass({
     loadSurvey: function () {
         RequestHelper.getSurvey(this, this.state.id);
     },
-    setSurvey: function (survey, error, success) {
+    setSurvey: function (survey, successMessage, errorMessage) {
         // TODO use reflux for this callback
         if (survey) {
+
+            var success = false;
+            if(successMessage) {
+                success = true;
+            }
+            var error = false;
+            if(errorMessage) {
+                error = true;
+            }
+
             this.setState({
                 survey: survey,
                 options: survey.surveyOptionsRemote,
@@ -44,7 +54,9 @@ var SurveyEdit = React.createClass({
                 id: survey.id,
                 editMode: true,
                 error: error,
-                success: success
+                success: success,
+                successMessage: successMessage,
+                errorMessage: errorMessage
             });
         } 
     },
@@ -68,7 +80,7 @@ var SurveyEdit = React.createClass({
         var requestData = {
             id: this.state.id,
             name: name,
-            surveyOptions: this.state.options
+            surveyOptionsRemote: this.state.options
         }
         if(!this.state.id || this.state.id == 0) {
             RequestHelper.addSurvey(this, requestData);
@@ -104,9 +116,31 @@ var SurveyEdit = React.createClass({
     },
     render: function () {
         var options = this.state.options;
+        var error = this.state.error;
+        var success = this.state.success;
+        var message = "";
+
+        if(error) {
+            message = (
+                <div className='alert alert-danger'>
+                    { this.state.errorMessage }
+                </div>
+            );
+        }
+
+        if(success) {
+            message = (
+                <div className='alert alert-success'>
+                    { this.state.successMessage }
+                </div>
+            );
+        }
 
         return (
             <div className="surveyedit">
+
+                {message}
+
                 <form onSubmit={this.handleSubmit}>
 
                     <FormGroup controlId="formControlsText">
