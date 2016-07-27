@@ -6,6 +6,54 @@
 - run `npm run build-script` to build client. Compiled files are available under /public/
 - run `npm start` to start the local development server on port `8082`. This can be changed in the `server.js` file
 
+# Project Structure
+
+```
+├── README.md         
+├── build.js          - build script for npm
+├── node_modules      - downloaded NPM dependencies
+├── package.json      - NPM dependencies and settings
+├── public            - Distribution folder
+├── server.js         - node server config
+├── src
+│   ├── css
+│   │   ├── app.css
+│   │   ├── bootstrap-responsive.css
+│   │   └── bootstrap.min.css
+│   ├── fonts
+│   │   ├── glyphicons-halflings-regular.eot
+│   │   ├── glyphicons-halflings-regular.svg
+│   │   ├── glyphicons-halflings-regular.ttf
+│   │   ├── glyphicons-halflings-regular.woff
+│   │   └── glyphicons-halflings-regular.woff2
+│   ├── img
+│   │   ├── vothing-large.png
+│   │   └── vothing-small.png
+│   ├── index.html
+│   └── js
+│       ├── actions
+│       │   └── Actions.js
+│       ├── components
+│       │   ├── Dockbar.jsx
+│       │   ├── Login.jsx
+│       │   ├── Survey.jsx
+│       │   ├── SurveyDelete.jsx
+│       │   ├── SurveyEdit.jsx
+│       │   ├── SurveyEditOption.jsx
+│       │   ├── SurveyList.jsx
+│       │   └── SurveyOption.jsx
+│       ├── config.js
+│       ├── main.jsx
+│       ├── pages
+│       │   └── Master.jsx
+│       ├── stores
+│       │   └── AuthStore.js
+│       └── util
+│           ├── PermissionHelper.js
+│           └── RequestHelper.js
+└── vothing-client.iml
+```
+
 # TODO 1.0.0
 - [ ] integrate client in the core assembly project
 - [ ] use a mechanism to auto deploy changes in a dev environment with node
